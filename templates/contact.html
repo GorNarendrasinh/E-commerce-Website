@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Form - RedStore</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .contact-container {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      border-radius: 16px;
+      padding: 30px 40px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      color: #fff;
+    }
+
+    .contact-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .contact-form label {
+      margin-top: 15px;
+      display: block;
+      font-weight: 600;
+      color: #ffffffcc;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+    }
+
+    .contact-form button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .contact-form button:hover {
+      background: linear-gradient(135deg, #764ba2, #667eea);
+    }
+
+    .thank-you {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 500;
+      margin-top: 20px;
+      color: #fff;
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .contact-container {
+        padding: 25px 20px;
+      }
+
+      .contact-container h2 {
+        font-size: 24px;
+      }
+    }
+    h1 ,p{
+      color: green;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: 700;
+      font-size: medium;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+    }
+    .flash.success {
+  color: green;
+}
+
+.flash.error {
+  color: red;
+}
+
+  
+  </style>
+</head>
+
+<body>
+ 
+  <div class="contact-container">
+
+    <!-- SUCCESS MESSAGE -->
+    {% if success %}
+        <p style="color: green;">✅ Message submitted successfully!</p>
+    {% endif %}
+
+    <!-- ERROR MESSAGE -->
+    {% if error %}
+        <p style="color: red;">❌ Email or mobile already used!</p>
+    {% endif %}
+
+    <h2>📬 Contact Us</h2>
+    <form class="contact-form" action="/contact" method="post">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="mobile">Mobile Number</label>
+        <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10}" />
+
+        <label for="address">Address</label>
+        <input type="text" id="address" name="address" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+        <button type="submit">Send Message</button>
+    </form>
+
+    <div class="thank-you" id="thankYouMessage">🎉 Thank you for visiting RedStore!</div>
+</div>

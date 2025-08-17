@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>E - COMMARCE</title>
+  <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+
+</head>
+<body>
+    <header>
+         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <div class="nav-container">
+      <div class="logo">REDSTORE</div>
+
+   
+
+      <!-- Navigation links -->
+      <nav class="mynav">
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#my">Product</a></li>
+          <li><a href="#footers">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/account">Account</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Search Bar Always Visible -->
+    <form class="search-bar" action="/search" method="post">
+      <input type="text" name="search" placeholder="Search...">
+      <button type="submit">Search</button>
+    </form>
+  </header>
+
+
+
+ <section class="hero">
+    <div class="hero-content">
+      <h3>Trends in Offer</h3>
+      <h1>Super Value Deals</h1>
+      <p><a href="#">On All Products</a></p>
+      <p>Discover new styles that define your fashion statement.</p>
+      <button><a href="/account" class="btn">Sing up</a></button>
+    <button><a href="/login" class="btn">Login</a></button>
+    </div>
+    <div class="hero-image">
+      <img src="static/images/heroimage.png" alt="Product Image">
+    </div>
+    
+  </section>
+
+  <div class="marquee-wrapper">
+    <div class="marquee-text">
+      Welcome to our store! Enjoy 50% off every product for a limited time. Explore our exclusive collection of beauty, skincare, fashion, and accessories. Hurry up – the offer ends soon!
+    </div>
+  </div>
+
+
+
+    <!-- noram photo sections -->
+
+<section class="categories-section">
+  <div class="categories-grid">
+
+    <div class="category-card">
+      <img src="static/images/category-1.jpg" alt="Category 1">
+      <div class="category-overlay">
+        <h3>Men's Collection</h3>
+        <p>Explore new season styles</p>
+      </div>
+    </div>
+
+    <div class="category-card">
+      <img src="static/images/category-3.jpg" alt="Category 2">
+      <div class="category-overlay">
+        <h3>Women's Fashion</h3>
+        <p>Elegant and trendy outfits</p>
+      </div>
+    </div>
+
+    <div class="category-card">
+      <img src="static/images/category-2.jpg" alt="Category 3">
+      <div class="category-overlay">
+        <h3>Accessories</h3>
+        <p>Complete your look</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+       <section class="product-section">
+  <div class="product-container">
+    
+    <!-- Clothing Card -->
+    <a href="/clothingproduct" class="product-card">
+      <img src="static/images/clothingbanner.webp" alt="Clothing">
+      <div class="card-content">
+        <h3>Clothing</h3>
+        <p>Explore trendy outfits and seasonal fashion collections for all styles.</p>
+      </div>
+    </a>
+
+    <!-- Electronics Card -->
+    <a href="/electronics" class="product-card">
+      <img src="static/images/electric.jpg" alt="Electronics">
+      <div class="card-content">
+        <h3>Electronics</h3>
+        <p>Stay updated with the latest gadgets and tech trends.</p>
+      </div>
+    </a>
+
+    <!-- Kids Card -->
+    <a href="/kidsproduct" class="product-card">
+      <img src="static/images/kidsbanner.jpg" alt="Kids">
+      <div class="card-content">
+        <h3>Kids</h3>
+        <p>Fun, safe, and stylish items for kids — from clothes to educational toys.</p>
+      </div>
+    </a>
+
+    <!-- Toys Card -->
+    <a href="/toys" class="product-card">
+      <img src="static/images/toyesbanner.jpg" alt="Toys">
+      <div class="card-content">
+        <h3>Toys</h3>
+        <p>Discover a world of fun and learning with our exciting toy collection. From educational puzzles to action-packed play sets, our toys inspire creativity, imagination, and endless joy for kids of all ages.".</p>
+      </div>
+    </a>
+     
+     <a href="/Stationery" class="product-card">
+      <img src="static/images/statsionary.jpg" alt="Toys">
+      <div class="card-content">
+        <h3>Stationery</h3>
+        <p>Organize, create, and achieve with our premium stationery collection. From notebooks and pens to art supplies and school kits, we provide everything you need to spark ideas, boost productivity, and make learning enjoyable."</p>
+      </div>
+    </a>
+
+    <a href="/Gaming" class="product-card">
+      <img src="static/images/gamin.jpg" alt="Toys">
+      <div class="card-content">
+        <h3>Gaming items</h3>
+        <p>"Upgrade your gaming experience with the latest accessories and gear. From powerful controllers and headsets to stylish gaming merchandise, our collection is designed to take your play to the next level.".</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+        <!-- Font Awesome CDN in <head> -->
+
+
+    <section id="my">
+         <h2 class="section-title">Latest Products</h2>
+  <div class="container">
+    <div class="card-container">
+
+      <div class="card">
+        <img src="static/images/product-1.jpg" alt="Casual Wear">
+        <h2>Casual Wear</h2>
+        <div class="rating">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+        </div>
+        <p>Comfortable cotton t-shirt with a trendy print, perfect for daily casual wear and outings.</p>
+       <a href="/clothingproduct"> <button class="order-btn">Order Now</button></a>
+      </div>
+
+      <div class="card">
+        <img src="static/images/shoes.png" alt="Printed Shirt">
+        <h2>Printed Shoes</h2>
+        <div class="rating">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p>Lightweight and durable sports shoes designed for running, gym, and everyday active lifestyle..</p>
+       <a href="/"> <button class="order-btn">Order Now</button></a>
+      </div>
+
+      <div class="card">
+        <img src="static/images/product-3.jpg" alt="Women Shirt">
+        <h2>Women Shirt</h2>
+        <div class="rating">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+        </div>
+        <p>Stylish and comfortable slim-fit trousers, suitable for both casual and semi-formal occasions.</p>
+       <a href="/clothingproduct"><button class="order-btn">Order Now</button></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+     
+  <section class="hero-section1" >
+    <div class="hero-content1">
+      <div class="hero-img1">
+        <img src="static/images/smartwatch.png" alt="Smart Band 4" />
+      </div>
+      <div class="hero-text1">
+        <p class="tagline">Exclusively Available on RedStore</p>
+        <h1>Smart Band 4</h1>
+        <p class="description">
+          The Mi Smart Band 4 features a 39.9% larger (than Mi Band 3) AMOLED color 
+          full-touch display with adjustable brightness, so everything is clear as can be.
+        </p>
+        <a href="/account" class="buy-btn1">Buy Now →</a>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="testimonials-section">
+    <h2>Customer Testimonials</h2>
+    <div class="testimonial-cards">
+      
+      <!-- Card 1 -->
+      <div class="testimonial-card">
+        <i class="fas fa-quote-left quote-icon"></i>
+        <p class="testimonial-text">
+         I was genuinely impressed by the design and responsiveness of this section. The interactive elements and clean layout make the experience feel smooth and engaging, especially on mobile devices. The use of hover effects and gradient overlays adds a modern touch that elevates the overall appeal — great work!
+        </p>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+          <i class="far fa-star"></i>
+        </div>
+        <div class="user-info">
+          <img src="static/images/user-1.png" alt="User 1">
+          <h3>Sean Parker</h3>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="testimonial-card">
+        <i class="fas fa-quote-left quote-icon"></i>
+        <p class="testimonial-text">
+          This implementation demonstrates thoughtful use of Flexbox, media queries, and visual hierarchy. The responsive behavior is well-executed, and the hover interactions enhance user engagement. One suggestion would be to consider optimizing image file sizes for faster load times, especially on slower networks.
+        </p>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"> </i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+        <div class="user-info">
+          <img src="static/images/user-2.png" alt="User 2">
+          <h3>Mike Smith</h3>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="testimonial-card">
+        <i class="fas fa-quote-left quote-icon"></i>
+        <p class="testimonial-text">
+          This section not only looks fantastic but tells a story through its visuals and motion. The seamless transitions and layered overlays invite users to explore more. It feels like each card has personality, which makes it more than just a layout — it becomes part of a larger, immersive brand experience.
+
+
+        </p>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"> </i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="user-info">
+          <img src="static/images/user-3.png" alt="User 3">
+          <h3>Mabel Joo</h3>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+    <div class="brand">
+
+   <div class="col5">
+    <img src="static/images/logo-godrej.png" >
+   </div>
+    <div class="col5">
+    <img src="static/images/logo-oppo.png" >
+   </div>
+    
+    <div class="col5">
+    <img src="static/images/logo-paypal.png" >
+   </div>
+    <div class="col5">
+    <img src="static/images/logo-philips.png" >
+   </div>
+
+    </div>
+   <section class="footer" id="footers">
+    <div class="footer">
+      <div class="container">
+        <div class="roww">
+          <div class="fotterclg1">
+            <h3>Download our App</h3>
+            <p>Download App for Android and ios mobile phone</p>
+            <div class="app">
+              <img src="images/play-store.png" >
+                <img src="images/app-store.png" >
+            </div>
+          </div>
+          <div class="fotterclg2">
+            <img src="static/images/logo-white.png" >
+          </div>
+            <div class="fotterclg3">
+            <h3>Usefull Links</h3>
+           <ul>
+           <li>Coupons</li>
+           <li>Blog Pos</li>
+           <li>Return Policy</li>
+            <li>Join Affiliate</li>
+
+
+           </ul>
+          </div>
+           <div class="fotterclg4">
+            <h3>Follw US</h3>
+           <ul>
+           <li>Facebook</li>
+           <li>Twitter</li>
+           <li>Instagram</li>
+            <li>Youtube</li>
+
+
+           </ul>
+          </div>
+        </div>
+      </div>
+    </div>   
+
+</section>
+
+<!-- Simple Chatbot Container -->
+
+<div id="simple-chatbot" style="display:none; flex-direction: column;">
+  <div id="chat-header">
+    AI Assistant 
+    <button id="close-chatbot" aria-label="Close Chatbot">&times;</button>
+  </div>
+
+  <div id="chat-messages" style="flex-grow: 1; overflow-y: auto; padding: 10px;"></div>
+  
+  <!-- Quick Reply Buttons -->
+  <div id="quick-replies" style="display:flex; gap:8px; padding:10px; border-top:1px solid #ddd; background:#f9f9f9; overflow-x:auto;">
+    <button class="quick-btn">Hello</button>
+    <button class="quick-btn">Men Clothing</button>
+    <button class="quick-btn">Women Clothing</button>
+    <button class="quick-btn">Kids Toys</button>
+    <button class="quick-btn">Clothes</button>
+    <button class="quick-btn">Thank You</button>
+  </div>
+
+  <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off" />
+</div>
+
+<!-- Chatbot Toggle Button -->
+<div id="chatbot-toggle" aria-label="Open Chat Assistant" role="button" tabindex="0">
+  <i class="fas fa-robot"></i>
+</div>
+
+
+<script src="/static/css/js/index.js"></script>
+
+      
+</body>
+</html> 

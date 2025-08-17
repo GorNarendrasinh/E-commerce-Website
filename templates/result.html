@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dashboard - RedStore</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #ff4b2b;
+  --primary-light: #ff7a64;
+  --bg-light: #ffffff;
+  --bg-dark: #1a1a1a;
+  --text-light: #ffffff;
+  --text-dark: #333333;
+  --card-bg-light: #f8f8f8;
+  --card-bg-dark: #2a2a2a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-light: var(--bg-dark);
+    --text-dark: var(--text-light);
+    --card-bg-light: var(--card-bg-dark);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-light);
+  color: var(--text-dark);
+}
+
+.sidebar {
+  background: var(--primary);
+  color: white;
+  width: 250px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.sidebar a:hover {
+  background: var(--primary-light);
+}
+
+.main {
+  flex: 1;
+  padding: 30px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 28px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--card-bg-light);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.user-info {
+  margin-top: 40px;
+  background: var(--card-bg-light);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.logout-btn {
+  margin-top: auto;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  background: white;
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #f0f0f0;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+  .sidebar {
+    flex-direction: row;
+    width: 100%;
+    overflow-x: auto;
+  }
+  .sidebar h2 {
+    display: none;
+  }
+  .logout-btn {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+  <aside class="sidebar">
+    <h2>RedStore</h2>
+    <a href="/orders">My Orders</a>
+    <a href="/profile">Profile</a>
+    <a href="/wishlist">Wishlist</a>
+    <a href="/support">Support</a>
+    <form action="{{ url_for('logout') }}" method="post">
+      <button type="submit" class="logout-btn">Logout</button>
+    </form>
+  </aside>
+
+  <main class="main">
+    <div class="header">
+      <h1>Hello, {{ username }} 👋</h1>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Total Orders</h3>
+        <p>12</p>
+      </div>
+      <div class="card">
+        <h3>Wishlist Items</h3>
+        <p>5</p>
+      </div>
+      <div class="card">
+        <h3>Rewards Points</h3>
+        <p>1200</p>
+      </div>
+      <div class="card">
+        <h3>Member Since</h3>
+        <p>2 years</p>
+      </div>
+    </div>
+
+    <div class="user-info">
+      <p><strong>Username:</strong> {{ username }}</p>
+      <p><strong>Email:</strong> {{ emailid }}</p>
+      <p><strong>Password Hash:</strong> {{ password }}</p>
+    </div>
+  </main>
+  
+
+
+</body>
+</html>
