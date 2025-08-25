@@ -5,151 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Shopping Cart</title>
 <style>
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0; padding: 20px;
-    background: #f9f9f9;
-  }
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
-  th, td {
-    padding: 15px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-  }
-  th {
-    background: #007bff;
-    color: white;
-  }
-  td img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-  }
-  .price, .original-price {
-    font-size: 1rem;
-  }
-  .original-price {
-    text-decoration: line-through;
-    color: #888;
-    margin-left: 8px;
-  }
-  .qty-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-  }
-  .qty-controls button {
-    padding: 6px 12px;
-    background: #007bff;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 4px;
-    font-weight: bold;
-  }
-  .qty-controls button:disabled {
-    background: #aaa;
-    cursor: not-allowed;
-  }
-  .qty-controls input {
-    width: 40px;
-    text-align: center;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  .remove-btn {
-    cursor: pointer;
-    font-size: 1.4rem;
-    color: #dc3545;
-    border: none;
-    background: none;
-  }
-  .order-section {
-    margin-top: 20px;
-    text-align: right;
-  }
- #order-btn {
-  padding: 12px 28px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #fff;
-  background-color: #ff4b2b; /* Bright, warm orange-red */
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(255, 75, 43, 0.4);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  user-select: none;
-}
-
-#order-btn:hover {
-  background-color: #e84322; /* Slightly darker on hover */
-  box-shadow: 0 6px 12px rgba(232, 67, 34, 0.6);
-}
-
-#order-btn:active {
-  background-color: #c8371c; /* Even darker on active press */
-  box-shadow: 0 3px 6px rgba(200, 55, 28, 0.8);
-  transform: translateY(1px);
-}
-
-#order-btn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-  box-shadow: none;
-  color: #888;
-}
-
-  @media (max-width: 720px) {
-    table, thead, tbody, th, td, tr {
-      display: block;
-    }
-    thead tr {
-      display: none;
-    }
-    tr {
-      margin-bottom: 20px;
-      background: white;
-      padding: 10px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    td {
-      text-align: right;
-      padding-left: 50%;
-      position: relative;
-    }
-    td::before {
-      content: attr(data-label);
-      position: absolute;
-      left: 15px;
-      width: 45%;
-      padding-left: 15px;
-      font-weight: bold;
-      text-align: left;
-    }
-    td img {
-      width: 100px;
-      height: auto;
-    }
-    .qty-controls {
-      justify-content: flex-end;
-    }
-  }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; padding:20px; background:#f9f9f9; }
+  h1 { text-align: center; margin-bottom: 20px; }
+  table { width: 100%; border-collapse: collapse; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+  th, td { padding: 15px; text-align: center; border-bottom: 1px solid #ddd; }
+  th { background: #007bff; color: white; }
+  td img { width: 80px; height: 80px; object-fit: contain; }
+  .qty-controls { display: flex; justify-content: center; align-items: center; gap: 10px; }
+  .qty-controls button { padding: 6px 12px; background: #007bff; border: none; color: white; cursor: pointer; border-radius: 4px; font-weight: bold; }
+  .qty-controls button:disabled { background: #aaa; cursor: not-allowed; }
+  .order-section { margin-top: 20px; text-align: right; }
+  #login-btn, #order-btn { padding: 12px 28px; font-size: 16px; font-weight: 600; color: #fff; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.3s ease, box-shadow 0.3s ease; }
+  #login-btn { background-color: #007bff; margin-right: 10px; box-shadow: 0 4px 8px rgba(0,123,255,0.4); }
+  #login-btn:hover:not(:disabled) { background-color: #0056b3; }
+  #order-btn { background-color: #ff4b2b; box-shadow: 0 4px 8px rgba(255,75,43,0.4); }
+  #order-btn:hover:not(:disabled) { background-color: #e84322; box-shadow: 0 6px 12px rgba(232,67,34,0.6); }
+  #login-btn:disabled, #order-btn:disabled { background-color: #ccc; cursor: not-allowed; box-shadow: none; color: #888; }
 </style>
 </head>
 <body>
@@ -169,101 +41,134 @@
   </thead>
   <tbody id="cart-body"></tbody>
 </table>
-<a href="/order">
-<button id="order-btn">Place Order</button></a>
+
+<div class="order-section">
+  <button id="login-btn">Login</button>
+  <a href="/order"><button id="order-btn">Place Order</button></a>
+</div>
 
 <script>
-  // ✅ Always check and sanitize localStorage data
-  let cartItems;
-  try {
-    const storedCart = JSON.parse(localStorage.getItem("cart"));
-    cartItems = Array.isArray(storedCart) ? storedCart : [];
-  } catch (e) {
-    cartItems = [];
+let cartItems = [];
+try {
+  const storedCart = JSON.parse(localStorage.getItem("cart"));
+  cartItems = Array.isArray(storedCart) ? storedCart : [];
+} catch(e) {
+  cartItems = [];
+}
+
+const cartBody = document.getElementById('cart-body');
+const loginBtn = document.getElementById('login-btn');
+const orderBtn = document.getElementById('order-btn');
+
+// Check login status
+function getLoginStatus() {
+  return localStorage.getItem("isLoggedIn") === "true";
+}
+
+// Render buttons based on login status and cart
+function renderButtons() {
+  if(getLoginStatus()) {
+    loginBtn.textContent = "Logout"; // Change button text
+    orderBtn.disabled = cartItems.length === 0; 
+  } else {
+    loginBtn.textContent = "Login"; // Change button text
+    orderBtn.disabled = true; 
   }
+}
 
-  const cartBody = document.getElementById('cart-body');
-  const orderBtn = document.getElementById('order-btn');
+// Render cart table
+function renderCart() {
+  cartBody.innerHTML = '';
 
-  function renderCart() {
-    cartBody.innerHTML = '';
-
-    if (cartItems.length === 0) {
-      cartBody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 30px;">Your cart is empty!</td></tr>';
-      orderBtn.disabled = true;
-      return;
-    }
-
-    orderBtn.disabled = false;
-
+  if(cartItems.length === 0) {
+    cartBody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:30px;">Your cart is empty!</td></tr>';
+  } else {
     cartItems.forEach(item => {
       const finalPrice = item.price * item.quantity;
       const tr = document.createElement('tr');
-
       tr.innerHTML = `
-        <td><img src="${item.image}" alt="${item.name}" style="width:60px;" /> ${item.name}</td>
+        <td><img src="${item.image}" alt="${item.name}" style="width:60px;"> ${item.name}</td>
         <td>₹${item.price.toFixed(2)}</td>
         <td>₹${item.originalPrice.toFixed(2)}</td>
         <td>
-          <button onclick="updateQuantity(${item.id}, -1)">-</button>
-          ${item.quantity}
-          <button onclick="updateQuantity(${item.id}, 1)">+</button>
+          <div class="qty-controls">
+            <button onclick="updateQuantity(${item.id}, -1)">-</button>
+            <span>${item.quantity}</span>
+            <button onclick="updateQuantity(${item.id}, 1)">+</button>
+          </div>
         </td>
         <td>₹${finalPrice.toFixed(2)}</td>
         <td><button onclick="removeItem(${item.id})">✖</button></td>
       `;
-
       cartBody.appendChild(tr);
     });
-
-    // Save updated cart to localStorage
-    localStorage.setItem("cart", JSON.stringify(cartItems));
   }
 
-  function updateQuantity(id, change) {
-    const item = cartItems.find(i => i.id === id);
-    if (!item) return;
+  localStorage.setItem("cart", JSON.stringify(cartItems));
+  renderButtons(); // Ensure buttons update
+}
 
-    const newQty = item.quantity + change;
-    if (newQty < 1) return;
-
-    item.quantity = newQty;
-    renderCart();
-  }
-
-  function removeItem(id) {
-    const index = cartItems.findIndex(i => i.id === id);
-    if (index !== -1) {
-      cartItems.splice(index, 1);
-      renderCart();
-    }
-  }
-
-  orderBtn.addEventListener('click', () => {
-    if (cartItems.length === 0) {
-      alert('Your cart is empty!');
-      return;
-    }
-
-    const orderItems = cartItems.map(item => ({
-      name: item.name,
-      price: item.price,
-      originalPrice: item.originalPrice,
-      quantity: item.quantity,
-      finalPrice: (item.price * item.quantity).toFixed(2)
-    }));
-
-    const previousOrders = JSON.parse(localStorage.getItem("orders")) || [];
-    previousOrders.push(...orderItems);
-    localStorage.setItem("orders", JSON.stringify(previousOrders));
-
-    alert('Order placed successfully!');
-    cartItems = [];
-    localStorage.removeItem("cart");
-    renderCart();
-  });
-
+// Update quantity
+function updateQuantity(id, change) {
+  const item = cartItems.find(i => i.id === id);
+  if(!item) return;
+  const newQty = item.quantity + change;
+  if(newQty < 1) return;
+  item.quantity = newQty;
   renderCart();
+}
+
+// Remove item
+function removeItem(id) {
+  cartItems = cartItems.filter(i => i.id !== id);
+  renderCart();
+}
+
+// Login/Logout button click
+loginBtn.onclick = () => {
+  if(getLoginStatus()) {
+    // logout
+    localStorage.setItem("isLoggedIn", "false");
+   window.location.href = "/result";
+
+  } else {
+    // login
+    localStorage.setItem("isLoggedIn", "true");
+     window.location.href = "/login";
+  }
+  renderCart();
+};
+
+// Place order
+orderBtn.onclick = () => {
+  if(!getLoginStatus()) {
+    alert("⚠️ Please login first to place order!");
+    return;
+  }
+  if(cartItems.length === 0) {
+    alert("Your cart is empty!");
+    return;
+  }
+
+  const previousOrders = JSON.parse(localStorage.getItem("orders")) || [];
+  const orderItems = cartItems.map(item => ({
+    name: item.name,
+    price: item.price,
+    originalPrice: item.originalPrice,
+    quantity: item.quantity,
+    finalPrice: (item.price * item.quantity).toFixed(2)
+  }));
+  previousOrders.push(...orderItems);
+  localStorage.setItem("orders", JSON.stringify(previousOrders));
+
+  alert("✅ Order placed successfully!");
+  cartItems = [];
+  localStorage.removeItem("cart");
+  renderCart();
+};
+
+// Initial render
+renderCart();
 </script>
 
 </body>
