@@ -4,13 +4,11 @@ from datetime import timedelta
 from passlib.hash import sha256_crypt
 import pymysql
 
-
 # Use PyMySQL instead of MySQLdb
 pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
 app.secret_key = 'account'
-
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root@localhost/user_signup'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Recommended to silence warnings
@@ -54,11 +52,8 @@ def contact():
         db.session.commit()
 
         return render_template('contact.html', success=True)
-
-    # GET request
+# GET request
     return render_template('contact.html')
-
-
 category = {
     'man': 'clothingproduct.html',
     'woman': 'clothingproduct.html',
@@ -76,26 +71,12 @@ def search():
         return render_template(category[query])
     else:
         return "Category not found", 404
-
-
-
-
-
-
-
 @app.route('/')
 def index():
     return render_template('index.html') 
 @app.route('/order')
 def order():
     return render_template('order.html') 
-
-
-
-
-
-    
-
 @app.route('/addtocart')
 def addtocartbn():
     return render_template('addtocart.html') 
@@ -111,8 +92,6 @@ def Stationeryitems():
 @app.route('/Gaming')
 def Gamingitems():
     return render_template('Gaming.html') 
-
-
 
 class Registrations(db.Model):
     usernameid  = db.Column(db.Integer, primary_key=True)
@@ -137,11 +116,8 @@ def accountpage():
         mobilenumber=mobile,
         password=encpasswored
 )
-
-
-        # Save to DB
-        
-        try:
+ # Save to DB
+         try:
             db.session.add(entry)
             db.session.commit()
             flash("Registration Complete ✅", "success")
@@ -153,12 +129,6 @@ def accountpage():
             return render_template('account.html')  # Show form again with message
 
     return render_template('account.html')
-
-
-
-
-
-
 @app.route('/kidsproduct')
 def kidsproduct():
     return render_template('kidsproduct.html')
@@ -169,9 +139,6 @@ def clothingproduct():
 @app.route('/toys')
 def toys():
     return render_template('toys.html')  
-
-
-
 # Login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -194,8 +161,6 @@ def login():
             flash("Invalid username or password ❌", "error")
             return render_template('login.html')  
     return render_template('login.html')
-
-
 # Dashboard / Result route
 @app.route('/result')
 def result():
@@ -214,7 +179,12 @@ def logout():
     session.pop('username', None)
     flash("You have been logged out.", "info")
     return redirect(url_for('login'))
-
+@app.route('/checkout')
+def checkout():
+    if 'username' not in session:
+        flash("Please login first to place order.", "warning")
+        return redirect(url_for('login'))
+    return render_template('checkout.html')
 if __name__ == '__main__':
     with app.app_context():
         db.create_all() 
