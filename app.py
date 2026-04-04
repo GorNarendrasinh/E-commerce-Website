@@ -2,22 +2,27 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from flask_sqlalchemy import SQLAlchemy
 from datetime import timedelta
 from passlib.hash import sha256_crypt
-import pymysql
 import os
-
-pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
 app.secret_key = 'account'
 
-# ⚠️ For Render: change this to PostgreSQL later
-app.config['SQLALCHEMY_DATABASE_URI'] =os.environ.get("DATABASE_URL")
+# ---------------- DATABASE CONFIG (FIXED) ----------------
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
+    "DATABASE_URL",
+    "sqlite:///app.db"   # fallback for local run
+)
+
+# IMPORTANT FIX for Render PostgreSQL compatibility
+app.config['SQLALCHEMY_DATABASE_URI'] = app.config['SQLALCHEMY_DATABASE_URI'].replace("postgres://", "postgresql://")
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 app.permanent_session_lifetime = timedelta(days=10)
+
 db = SQLAlchemy(app)
 
-# ---------------- DATABASE MODELS ----------------
+# ---------------- MODELS ----------------
 
 class Contact(db.Model):
     countid = db.Column(db.Integer, primary_key=True)
@@ -92,8 +97,7 @@ def search():
 
     if query in category:
         return render_template(category[query])
-    else:
-        return "Category not found", 404
+    return "Category not found", 404
 
 
 # ---------------- STATIC PAGES ----------------
@@ -138,7 +142,7 @@ def toys():
     return render_template('toys.html')
 
 
-# ---------------- ACCOUNT REGISTER ----------------
+# ---------------- REGISTER ----------------
 
 @app.route('/account', methods=['GET', 'POST'])
 def accountpage():
@@ -163,7 +167,6 @@ def accountpage():
             db.session.commit()
             flash("Registration Complete ✅", "success")
             return redirect(url_for('login'))
-
         except Exception as e:
             db.session.rollback()
             print(e)
@@ -205,7 +208,6 @@ def login():
 @app.route('/result')
 def result():
     if 'username' not in session:
-        flash("Please login first.", "warning")
         return redirect(url_for('login'))
 
     user = Registrations.query.filter_by(username=session['username']).first()
@@ -223,25 +225,25 @@ def result():
 @app.route('/logout', methods=['POST'])
 def logout():
     session.pop('username', None)
-    flash("You have been logged out.", "info")
+    flash("Logged out", "info")
     return redirect(url_for('login'))
 
 
-# ---------------- CHECKOUT (FIXED) ----------------
+# ---------------- CHECKOUT ----------------
 
 @app.route('/checkout')
 def checkout():
     if 'username' not in session:
-        flash("Please login first to place order.", "warning")
+        flash("Please login first", "warning")
         return redirect(url_for('login'))
 
     return render_template('checkout.html')
 
 
-# ---------------- MAIN ----------------
+# ---------------- RUN ----------------
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     with app.app_context():
         db.create_all()
 
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
