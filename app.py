@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import timedelta
 from passlib.hash import sha256_crypt
 import pymysql
+import os
 
 pymysql.install_as_MySQLdb()
 
@@ -10,7 +11,7 @@ app = Flask(__name__)
 app.secret_key = 'account'
 
 # ⚠️ For Render: change this to PostgreSQL later
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root@localhost/user_signup'
+app.config['SQLALCHEMY_DATABASE_URI'] =os.environ.get("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 app.permanent_session_lifetime = timedelta(days=10)
