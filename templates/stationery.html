@@ -1,73 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Shop</title>
 
-     /* Reset default browser styles */
-/* === NAVIGATION BAR STYLES === */
+<style>
+
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
-  background-attachment: fixed;
 }
 
 body {
-  overflow-x: hidden;
   background-color: #f8f8f8;
-  
-  
+  overflow-x: hidden;
 }
+
+/* ===== NAVBAR ===== */
 .navbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 20px;
+  background: #fff;
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: #fff;
-  padding: 10px 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .logo img {
-  width: 130px;
-  height: auto;
+  width: 120px;
 }
 
 nav ul {
-  list-style: none;
   display: flex;
-  gap: 25px;
+  list-style: none;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 nav ul li a {
   text-decoration: none;
   color: #333;
-  font-size: 16px;
-  padding: 8px 12px;
-  transition: color 0.3s ease, background-color 0.3s ease;
+  padding: 6px 10px;
 }
 
 nav ul li a:hover {
-  background-color: #f0f0f0;
-  color: #007bff;
-  border-radius: 4px;
+  background: #eee;
+  border-radius: 5px;
 }
 
 .cart {
-  margin-right: 20px;
+  width: 30px;
 }
-/* === FOOTER STYLES === */
+
+/* ===== PRODUCT GRID ===== */
+.continer {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* CARD */
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.card h2 {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+/* PRICE */
+.productpriceelm {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.productprice {
+  color: red;
+  font-weight: bold;
+}
+
+.productacutleprice {
+  text-decoration: line-through;
+  color: gray;
+}
+
+/* STOCK */
+.productstockelm {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* BUTTON */
+.addtocartbtn {
+  background: black;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.addtocartbtn:hover {
+  background: orange;
+}
+
+/* RATING */
+.rating::before {
+  content: "★★★★★";
+  color: gold;
+}
+
+/* ===== FOOTER ===== */
 .footer {
-  background-color: #000;
-  color: #fff;
+  background: black;
+  color: white;
   padding: 40px 20px;
-  font-family: Arial, sans-serif;
 }
 
 .footer .container {
@@ -75,532 +153,133 @@ nav ul li a:hover {
   margin: auto;
 }
 
-.footer .roww {
+.roww {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 20px;
 }
 
-.footer h3 {
-  font-size: 18px;
-  margin-bottom: 15px;
-}
-
-.footer p {
-  font-size: 14px;
-  line-height: 1.5;
-  color: #ccc;
-}
-
-.footer .app img {
-  height: 40px;
-  margin-right: 10px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.footer .app img:hover {
-  transform: scale(1.05);
-}
-
-.footer img {
-  max-width: 150px;
-  margin-bottom: 10px;
+.roww div {
+  flex: 1 1 200px;
 }
 
 .footer ul {
   list-style: none;
-  padding: 0;
 }
 
 .footer ul li {
-  font-size: 14px;
-  margin-bottom: 10px;
   color: #ccc;
-  cursor: pointer;
-  transition: color 0.3s ease;
+  margin: 5px 0;
 }
 
-.footer ul li:hover {
-  color: #fff;
-}
-
-/* Footer Columns */
-.footer .fotterclg1,
-.footer .fotterclg2,
-.footer .fotterclg3,
-.footer .fotterclg4 {
-  flex: 1 1 200px;
-}
-
-/* Responsive Footer */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .footer .roww {
+
+  .navbar {
     flex-direction: column;
-    align-items: center;
     text-align: center;
   }
 
-  .footer .fotterclg1,
-  .footer .fotterclg2,
-  .footer .fotterclg3,
-  .footer .fotterclg4 {
-    flex: 1 1 100%;
+  nav ul {
+    justify-content: center;
+    gap: 10px;
   }
 
-  .footer .app img {
-    margin-bottom: 10px;
+  .cart {
+    margin-top: 10px;
+  }
+
+  .roww {
+    flex-direction: column;
+    text-align: center;
   }
 }
-.card {
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 8px;
- 
-  width: 220px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  text-align: center;
-}
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.card img {
-  width: 100%;
-  margin-left: 1px;
-}
-
-.card h2  {
-  font-size: 1rem;
-  padding: 5px;
-color: #555;
-}
-h4{
-  gap: 100px;
-  margin-left: -30px;
-font-size: xx-large;
-  margin-top: 50px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-.main1 {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 20px;
-  text-align: center;
-  
-  border-radius: 8px;
-}
-
-.main1 h4 {
-  text-transform: uppercase;
-
-  letter-spacing: 1px;
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-
-.card {
-  display: inline-block;
-  border-radius: 8px;
-  overflow: hidden;
-  width: 250px;
-  margin: 10px;
-  text-align: center;
- 
-
-}
-
-
-.btn1{
-  padding: 15px;
-  border-radius: 40px;
- margin-bottom: 40px;
-   border: 2px solid black;
-   width: 70%;
-   color: whitesmoke;
-   background-color: black;
-}
-.btn1:hover{
-  background-color: orange;
-  color:#f8f8f8;
-}
-.productpriceelm {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 10px;
-  font-family: Arial, sans-serif;
-}
-
-.productprice {
-  font-size: 20px;
-  color: #e53935; /* Red for discounted price */
-  font-weight: bold;
-  margin-left: 35px;
-}
-
-.productacutleprice {
-  font-size: 16px;
-  color: #888;
-  text-decoration: line-through;
-  margin-left: 15px;
-}
-
-.productstockelm {
-  margin-bottom: 10px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  
-}
-
-.productpropty {
-  margin: 0;
-  font-weight: 500;
-  display: inline-block;
-}
-
-.productstock {
-  display: inline-block;
-  margin-left: 5px;
-  font-weight: bold;
-}
-
-.productquantityelm {
-  margin-bottom: -2px;
-  font-family: Arial, sans-serif;
-}
-
-
-.producttext {
-  margin: 0 10px;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-/* Optional: Add To Cart button */
-.addtocartbtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  padding: 12px 15px;
-  cursor: pointer;
-  font-size: 14px;
-  border-radius: 3px;
-  transition: background 0.3s;
-  margin-bottom: 30px;
-  margin-top: 20px;
-  
-}
-.continer {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.addtocartbtn:hover {
-  background-color: #555;
-}
-
-.addtocartbtn i {
-  font-size:16px;
-}
-.card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.card h2 {
-  font-size: 18px;
-  color: #444;
-  margin: 10px 0;
-}
-.rating {
-  margin: 10px 0;
-}
-
-.rating::before {
-  content: "★★★★★";
-  letter-spacing: 3px;
-  color: #f5b50a; /* gold stars */
-  font-size: 18px;
-}
-
-    </style>
+</style>
 </head>
+
 <body>
-    <div class="header">
-  <div class="container">
-  <div class="navbar">
-    <div class="logo">
-      <img src="static/images/logo.png"width="130px">
-    </div>
-     <nav>
-      <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="#productpage">Product</a></li>
-          <li><a href="#footers">About</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href="/account">Account</a></li>
-        </ul>
-        </ul>
-     </nav>
-     <img src="static/images/cart.png" class="cart" width="30px" height="30px" >
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">
+    <img src="static/images/logo.png">
   </div>
 
-         <!-- all product section here  -->
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="#productpage">Product</a></li>
+      <li><a href="#footers">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/account">Account</a></li>
+    </ul>
+  </nav>
 
+  <img src="static/images/cart.png" class="cart">
+</div>
 
-       <div class="continer">
-     <div class="card">
-        <img src="/static/images/statsionarys.png">
-        <h2>Stationery Kit</h2>
-        <div class="rating"> </div>
-        <div class="productpriceelm">
-            <p class="productprice">₹999.99</p>
-            <p class="productacutleprice">₹1999</p>
-          </div>
+<!-- PRODUCTS -->
+<div class="continer">
 
-          <div class="productstockelm">
-            <p class="productpropty">Total Stock Available:</p>
-            <p class="productstock">50</p>
-          </div>
+  <div class="card">
+    <img src="/static/images/statsionarys.png">
+    <h2>Stationery Kit</h2>
+    <div class="rating"></div>
 
-          
-         <a href="/addtocart">  <button class="addtocartbtn">
-  <i>🛒</i> Add To Cart </button></a>
-        </div>
-        
+    <div class="productpriceelm">
+      <p class="productprice">₹999</p>
+      <p class="productacutleprice">₹1999</p>
+    </div>
 
-         <div class="card">
-        <img src="/static/images/statsionary2.png">
-        <h2>Hauser XO  pens(50)</h2>
-        <div class="rating"> </div>
-        <div class="productpriceelm">
-            <p class="productprice">₹599.99</p>
-            <p class="productacutleprice">₹3999</p>
-          </div>
+    <div class="productstockelm">
+      Total Stock: 50
+    </div>
 
-          <div class="productstockelm">
-            <p class="productpropty">Total Stock Available:</p>
-            <p class="productstock">50</p>
-          </div>
+    <button class="addtocartbtn">🛒 Add To Cart</button>
+  </div>
 
-          
-         <a href="/addtocart">  <button class="addtocartbtn">
-  <i>🛒</i> Add To Cart </button></a>
-        </div>
-         
+  <!-- Repeat cards same way (no change needed) -->
 
-         <div class="card">
-        <img src="/static/images/statsionary3.png">
-        <h2>School Bag Kit</h2>
-        <div class="rating"> </div>
-        <div class="productpriceelm">
-            <p class="productprice">₹799.99</p>
-            <p class="productacutleprice">₹1999</p>
-          </div>
+</div>
 
-          <div class="productstockelm">
-            <p class="productpropty">Total Stock Available:</p>
-            <p class="productstock">50</p>
-          </div>
+<!-- FOOTER -->
+<section class="footer" id="footers">
+  <div class="container">
+    <div class="roww">
 
-          
-         <a href="/addtocart">  <button class="addtocartbtn">
-  <i>🛒</i> Add To Cart </button></a>
-        </div>
-
-         <div class="card">
-        <img src="/static/images/statsionary4.png">
-        <h2>Singal Spiral Notbooks</h2>
-        <div class="rating"> </div>
-        <div class="productpriceelm">
-            <p class="productprice">₹599.99</p>
-            <p class="productacutleprice">₹1999</p>
-          </div>
-
-          <div class="productstockelm">
-            <p class="productpropty">Total Stock Available:</p>
-            <p class="productstock">50</p>
-          </div>
-
-          
-         <a href="/addtocart">  <button class="addtocartbtn">
-  <i>🛒</i> Add To Cart </button></a>
-        </div>
-
-         <div class="card">
-         <img src="/static/images/statsionary5.png">
-        <h2>Files & Folder</h2>
-        <div class="rating"> </div>
-        <div class="productpriceelm">
-            <p class="productprice">₹999.99</p>
-            <p class="productacutleprice">₹1999</p>
-          </div>
-
-          <div class="productstockelm">
-            <p class="productpropty">Total Stock Available:</p>
-            <p class="productstock">50</p>
-          </div>
-
-          
-         <a href="/addtocart">  <button class="addtocartbtn">
-  <i>🛒</i> Add To Cart </button></a>
-        </div>
-
-         <div class="card">
-        <img src="/static/images/statsionary6.png">
-        <h2>Large Folder & folder (10)</h2>
-        <div class="rating"> </div>
-        <div class="productpriceelm">
-            <p class="productprice">₹1999.99</p>
-            <p class="productacutleprice">₹3999</p>
-          </div>
-
-          <div class="productstockelm">
-            <p class="productpropty">Total Stock Available:</p>
-            <p class="productstock">50</p>
-          </div>
-
-          
-         <a href="/addtocart">  <button class="addtocartbtn">
-  <i>🛒</i> Add To Cart </button></a>
-        </div>
-
-         <div class="card">
-        <img src="/static/images/statsionary7.png">
-        <h2>Drawing/Coloring Book Set</h2>
-        <div class="rating"> </div>
-        <div class="productpriceelm">
-            <p class="productprice">₹599.99</p>
-            <p class="productacutleprice">₹999</p>
-          </div>
-
-          <div class="productstockelm">
-            <p class="productpropty">Total Stock Available:</p>
-            <p class="productstock">50</p>
-          </div>
-
-          
-         <a href="/addtocart">  <button class="addtocartbtn">
-  <i>🛒</i> Add To Cart </button></a>
-        </div>
-
-         <div class="card">
-        <img src="/static/images/statsionary8.png">
-        <h2>Children's Activity Books</h2>
-        <div class="rating"> </div>
-        <div class="productpriceelm">
-            <p class="productprice">₹799.99</p>
-            <p class="productacutleprice">₹3999</p>
-          </div>
-
-          <div class="productstockelm">
-            <p class="productpropty">Total Stock Available:</p>
-            <p class="productstock">50</p>
-          </div>
-
-          
-         <a href="/addtocart">  <button class="addtocartbtn">
-  <i>🛒</i> Add To Cart </button></a>
-        </div>
+      <div>
+        <h3>Download App</h3>
+        <p>Android & iOS</p>
       </div>
 
-   <section class="footer" id="footers">
-    <div class="footer">
-      <div class="container">
-        <div class="roww">
-          <div class="fotterclg1">
-            <h3>Download our App</h3>
-            <p>Download App for Android and ios mobile phone</p>
-            <div class="app">
-              <img src="images/play-store.png" >
-                <img src="images/app-store.png" >
-            </div>
-          </div>
-          <div class="fotterclg2">
-            <img src="images/logo-white.png" >
-            <div class="para">
-            <p>"Welcome to RedShope – your trusted online store for quality, value, and convenience. At RedShope, we’re committed to bringing you a wide range of products that match your lifestyle and budget, from everyday essentials to the latest trends. With fast delivery, secure payments, and dedicated customer service, we make shopping online simple and satisfying. Discover great deals and shop with confidence at RedShope – where quality meets convenience!"!</p>
-          </div>
-          </div>
-            <div class="fotterclg3">
-            <h3>Usefull Links</h3>
-           <ul>
-           <li>Coupons</li>
-           <li>Blog Pos</li>
-           <li>Return Policy</li>
-            <li>Join Affiliate</li>
-
-
-           </ul>
-          </div>
-           <div class="fotterclg4">
-            <h3>Follw US</h3>
-           <ul>
-           <li>Facebook</li>
-           <li>Twitter</li>
-           <li>Instagram</li>
-            <li>Youtube</li>
-
-
-           </ul>
-          </div>
-        </div>
+      <div>
+        <h3>About</h3>
+        <p>Welcome to RedShope...</p>
       </div>
-    </div>   
 
+      <div>
+        <h3>Links</h3>
+        <ul>
+          <li>Coupons</li>
+          <li>Blog</li>
+          <li>Return Policy</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Follow</h3>
+        <ul>
+          <li>Facebook</li>
+          <li>Instagram</li>
+          <li>YouTube</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
 </section>
 
- <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const addToCartButtons = document.querySelectorAll(".addtocartbtn");
-
-  addToCartButtons.forEach((button, index) => {
-    button.addEventListener("click", (e) => {
-      e.preventDefault();
-
-      const card = button.closest(".card");
-      const name = card.querySelector("h2").innerText.trim();
-      const price = parseFloat(card.querySelector(".productprice").innerText.replace("₹", "").trim());
-      const originalPrice = parseFloat(card.querySelector(".productacutleprice").innerText.replace("₹", "").trim());
-      const stock = parseInt(card.querySelector(".productstock").innerText.trim());
-      const imageSrc = card.querySelector("img").getAttribute("src");
-
-      // Use a unique id - you can use index or better a generated id
-      const id = index + 1;
-
-      const productData = {
-        id,
-        name,
-        price,
-        originalPrice,
-        stock,
-        image: imageSrc,
-        quantity: 1
-      };
-
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      const existing = cart.find(item => item.id === id);
-
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        cart.push(productData);
-      }
-
-      localStorage.setItem("cart", JSON.stringify(cart));
-     window.location.href = "/addtocart"; 
-    });
-  });
-});
-</script>
 </body>
 </html>
