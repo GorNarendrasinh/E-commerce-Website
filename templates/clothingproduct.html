@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>Responsive Store</title>
 
 <style>
 
@@ -20,20 +20,25 @@ body {
   overflow-x: hidden;
 }
 
-/* NAVBAR */
+/* ================= NAVBAR ================= */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   background: #fff;
-  padding: 10px 20px;
+  padding: 10px 15px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo img {
+  width: 120px;
+  max-width: 100%;
 }
 
 nav ul {
   display: flex;
-  gap: 20px;
+  gap: 15px;
   list-style: none;
   flex-wrap: wrap;
 }
@@ -42,6 +47,7 @@ nav ul li a {
   text-decoration: none;
   color: #333;
   padding: 6px 10px;
+  font-size: 14px;
 }
 
 nav ul li a:hover {
@@ -49,39 +55,33 @@ nav ul li a:hover {
   border-radius: 5px;
 }
 
-/* LOGO */
-.logo img {
-  width: 130px;
-}
-
-/* CART */
 .cart {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
 }
 
-/* SECTION TITLES */
+/* ================= TITLES ================= */
 .man, .women {
   background: lightpink;
   width: fit-content;
-  margin: 30px auto;
-  padding: 10px 20px;
+  margin: 25px auto;
+  padding: 10px 15px;
   border-radius: 10px;
-  box-shadow: 0 0 10px #ccc;
   text-align: center;
 }
 
-/* CONTAINER GRID */
+/* ================= GRID ================= */
 .continer {
   max-width: 1200px;
   margin: auto;
   padding: 10px;
+
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
 }
 
-/* CARD */
+/* ================= CARD ================= */
 .card {
   background: #fff;
   border-radius: 10px;
@@ -89,6 +89,10 @@ nav ul li a:hover {
   text-align: center;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   transition: 0.3s;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card:hover {
@@ -98,14 +102,21 @@ nav ul li a:hover {
 .card img {
   width: 100%;
   height: auto;
+  border-radius: 6px;
+}
+
+.card h2 {
+  font-size: 15px;
+  margin: 8px 0;
 }
 
 /* PRICE */
 .productpriceelm {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin: 10px 0;
+  gap: 8px;
+  margin: 8px 0;
+  flex-wrap: wrap;
 }
 
 .productprice {
@@ -120,8 +131,8 @@ nav ul li a:hover {
 
 /* STOCK */
 .productstockelm {
-  font-size: 14px;
-  margin-bottom: 10px;
+  font-size: 13px;
+  margin-bottom: 8px;
 }
 
 /* BUTTON */
@@ -131,7 +142,7 @@ nav ul li a:hover {
   background: black;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
@@ -139,7 +150,7 @@ nav ul li a:hover {
   background: orange;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 .footer {
   background: black;
   color: white;
@@ -156,18 +167,20 @@ nav ul li a:hover {
   flex: 1 1 200px;
 }
 
+/* ================= RESPONSIVE ================= */
+
 /* TABLET */
 @media (max-width: 768px) {
 
   .navbar {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
   }
 
   nav ul {
     flex-direction: column;
-    width: 100%;
+    align-items: center;
   }
 
   .continer {
@@ -185,6 +198,10 @@ nav ul li a:hover {
   .man, .women {
     font-size: 16px;
   }
+
+  nav ul li a {
+    font-size: 13px;
+  }
 }
 
 </style>
@@ -192,39 +209,37 @@ nav ul li a:hover {
 
 <body>
 
-<div class="header">
-  <div class="navbar">
+<!-- NAVBAR -->
+<div class="navbar">
 
-    <div class="logo">
-      <img src="static/images/logo.png">
-    </div>
-
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="#productpage">Product</a></li>
-        <li><a href="#footers">About</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/account">Account</a></li>
-      </ul>
-    </nav>
-
-    <img src="static/images/cart.png" class="cart">
-
+  <div class="logo">
+    <img src="static/images/logo.png">
   </div>
+
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="#productpage">Product</a></li>
+      <li><a href="#footers">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/account">Account</a></li>
+    </ul>
+  </nav>
+
+  <img src="static/images/cart.png" class="cart">
+
 </div>
 
 <!-- PRODUCTS -->
 <section id="productpage">
 
-<h2 class="man">Men's Collections</h2>
+<h2 class="man">Men's Collection</h2>
 
 <div class="continer">
 
-<!-- CARD -->
 <div class="card">
   <img src="static/images/man1.png.PNG">
-  <h2>Classic Denim Jacket</h2>
+  <h2>Denim Jacket</h2>
 
   <div class="productpriceelm">
     <p class="productprice">₹1499</p>
@@ -232,99 +247,22 @@ nav ul li a:hover {
   </div>
 
   <div class="productstockelm">
-    Total Stock: <b>40</b>
-  </div>
-
-  <button class="addtocartbtn">🛒 Add To Cart</button>
-</div>
-
-<!-- (ALL YOUR CARDS REMAIN SAME - NO CHANGE) -->
-
-</div>
-
-<h2 class="women">Women's Collections</h2>
-
-<div class="continer">
-
-<!-- WOMEN CARDS (UNCHANGED) -->
-<div class="card">
-  <img src="static/images/womans1.png.PNG">
-  <h2>Light Blue Shirt</h2>
-
-  <div class="productpriceelm">
-    <p class="productprice">₹899</p>
-    <p class="productacutleprice">₹1899</p>
-  </div>
-
-  <div class="productstockelm">
-    Total Stock: <b>50</b>
+    Stock: <b>40</b>
   </div>
 
   <button class="addtocartbtn">🛒 Add To Cart</button>
 </div>
 
 </div>
-</section>
 
 <!-- FOOTER -->
 <section class="footer" id="footers">
   <div class="roww">
-
-    <div>
-      <h3>Download App</h3>
-      <p>Android & iOS</p>
-    </div>
-
-    <div>
-      <h3>About</h3>
-      <p>RedShope Online Store</p>
-    </div>
-
-    <div>
-      <h3>Links</h3>
-      <p>Coupons | Blog | Return</p>
-    </div>
-
+    <div><h3>Download App</h3><p>Android & iOS</p></div>
+    <div><h3>About</h3><p>Online Store</p></div>
+    <div><h3>Links</h3><p>Coupons | Blog | Return</p></div>
   </div>
 </section>
-
-<!-- JS (UNCHANGED) -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const addToCartButtons = document.querySelectorAll(".addtocartbtn");
-
-  addToCartButtons.forEach((button, index) => {
-    button.addEventListener("click", (e) => {
-      e.preventDefault();
-
-      const card = button.closest(".card");
-      const name = card.querySelector("h2").innerText.trim();
-      const price = parseFloat(card.querySelector(".productprice").innerText.replace("₹", "").trim());
-      const originalPrice = parseFloat(card.querySelector(".productacutleprice").innerText.replace("₹", "").trim());
-
-      const productData = {
-        id: index + 1,
-        name,
-        price,
-        originalPrice,
-        quantity: 1
-      };
-
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      const existing = cart.find(item => item.id === productData.id);
-
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        cart.push(productData);
-      }
-
-      localStorage.setItem("cart", JSON.stringify(cart));
-      window.location.href = "/addtocart";
-    });
-  });
-});
-</script>
 
 </body>
 </html>
