@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dashboard - RedStore</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
 :root {
   --primary: #ff4b2b;
@@ -130,6 +131,28 @@ body {
   background: #f0f0f0;
 }
 
+/* Order Button */
+.order-btn {
+  margin-top: 30px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.order-btn:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+
+.order-btn:hover:not(:disabled) {
+  background: var(--primary-light);
+}
+
 /* Mobile view */
 @media (max-width: 768px) {
   body {
@@ -151,11 +174,11 @@ body {
 </head>
 <body>
   <aside class="sidebar">
-    <h2>RedStore</h2>
-    <a href="/orders">My Orders</a>
-    <a href="/profile">Profile</a>
-    <a href="/wishlist">Wishlist</a>
-    <a href="/support">Support</a>
+ <h2>RedStore</h2>
+<a href="/addtocart">My Orders</a>
+<a href="/">Profile</a>   <!-- ✅ index page -->
+<a href="/checkout">Wishlist</a>
+<a href="/support">Support</a>
     <form action="{{ url_for('logout') }}" method="post">
       <button type="submit" class="logout-btn">Logout</button>
     </form>
@@ -188,11 +211,26 @@ body {
     <div class="user-info">
       <p><strong>Username:</strong> {{ username }}</p>
       <p><strong>Email:</strong> {{ emailid }}</p>
-      <p><strong>Password Hash:</strong> {{ password }}</p>
     </div>
-  </main>
-  
 
+   
+<script>
+// Simulate login check (replace with backend session check)
+const isLoggedIn = "{{ username }}" !== "" && "{{ username }}" !== "None";  
 
+const orderBtn = document.getElementById("placeOrderBtn");
+
+if(!isLoggedIn){
+  orderBtn.disabled = true; 
+  orderBtn.addEventListener("click", () => {
+    window.location.href = "/login"; // Redirect to login page
+  });
+} else {
+  orderBtn.disabled = false; 
+  orderBtn.addEventListener("click", () => {
+    window.location.href = "/checkout"; // Redirect to checkout
+  });
+}
+</script>
 </body>
 </html>
