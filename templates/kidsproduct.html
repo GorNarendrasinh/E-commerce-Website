@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Responsive Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
-<style>
-
-/* RESET */
+     /* Reset default browser styles */
+/* === NAVIGATION BAR STYLES === */
 * {
   margin: 0;
   padding: 0;
@@ -20,7 +20,7 @@ body {
   background-color: #f8f8f8;
 }
 
-/* NAVBAR */
+/* ===== NAVBAR ===== */
 .navbar {
   display: flex;
   align-items: center;
@@ -31,26 +31,23 @@ body {
   background: #fff;
   padding: 10px 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  flex-wrap: wrap;
 }
 
 .logo img {
-  width: 130px;
-  height: auto;
+  width: 120px;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 25px;
-  flex-wrap: wrap;
+  gap: 20px;
 }
 
 nav ul li a {
   text-decoration: none;
   color: #333;
-  font-size: 16px;
-  padding: 8px 12px;
+  font-size: 15px;
+  padding: 6px 10px;
   transition: 0.3s;
 }
 
@@ -61,66 +58,78 @@ nav ul li a:hover {
 }
 
 .cart {
-  width: 30px;
-  height: 30px;
+  width: 28px;
 }
 
-/* CONTAINER */
-.container {
-  max-width: 1200px;
-  margin: auto;
+/* ===== SECTION HEADINGS ===== */
+.man, .women {
+  background-color: lightpink;
   padding: 10px;
+  text-align: center;
+  margin: 30px auto;
+  width: fit-content;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-/* PRODUCTS GRID (MOST IMPORTANT FIX) */
+/* ===== PRODUCT GRID ===== */
 .continer {
   max-width: 1200px;
   margin: auto;
-  padding: 20px;
+  padding: 10px;
+
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
 }
 
-/* CARD */
+/* ===== CARD ===== */
 .card {
+  width: 100%;
   background: #fff;
-  border: 1px solid #eee;
-  border-radius: 10px;
-  overflow: hidden;
+  border-radius: 8px;
+  padding: 10px;
   text-align: center;
+  border: 1px solid #eee;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   transition: 0.3s;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .card img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: auto;        /* IMPORTANT */
+  object-fit: contain; /* full image show */
+  background: #fff;    /* optional (empty space clean dikhega) */
 }
 
 .card h2 {
   font-size: 16px;
-  color: #444;
   margin: 10px 0;
+  color: #444;
 }
 
-/* PRICE */
+/* ===== RATING ===== */
+.rating::before {
+  content: "★★★★★";
+  letter-spacing: 3px;
+  color: #f5b50a;
+  font-size: 16px;
+}
+
+/* ===== PRICE ===== */
 .productpriceelm {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 10px;
+  margin: 8px 0;
 }
 
 .productprice {
   color: red;
-  font-size: 18px;
   font-weight: bold;
 }
 
@@ -129,50 +138,50 @@ nav ul li a:hover {
   color: #888;
 }
 
-/* STOCK */
+/* ===== STOCK ===== */
 .productstockelm {
-  font-size: 14px;
+  font-size: 13px;
   margin-bottom: 10px;
 }
 
-/* BUTTON */
+/* ===== BUTTON ===== */
 .addtocartbtn {
-  background: #333;
-  color: #fff;
+  background: black;
+  color: white;
   border: none;
-  padding: 10px 15px;
-  margin: 10px 0 20px;
-  border-radius: 5px;
+  padding: 10px;
+  width: 90%;
+  border-radius: 20px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .addtocartbtn:hover {
-  background: #555;
+  background: orange;
 }
 
-/* RATING */
-.rating::before {
-  content: "★★★★★";
-  color: gold;
-}
-
-/* FOOTER */
+/* ===== FOOTER ===== */
 .footer {
-  background: #000;
-  color: #fff;
+  background: black;
+  color: white;
   padding: 40px 20px;
+  margin-top: 40px;
 }
 
-.footer .container {
-  max-width: 1200px;
-  margin: auto;
-}
-
-.roww {
+.footer .roww {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   gap: 20px;
+}
+
+.footer .roww > div {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer p {
+  font-size: 14px;
+  color: #ccc;
 }
 
 .footer ul {
@@ -180,149 +189,270 @@ nav ul li a:hover {
 }
 
 .footer ul li {
+  margin: 5px 0;
   color: #ccc;
-  margin: 8px 0;
 }
 
-.footer ul li:hover {
-  color: #fff;
+/* ===== RESPONSIVE ===== */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .continer {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
+/* Mobile */
+@media (max-width: 600px) {
 
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+  .continer {
+    grid-template-columns: repeat(2, 1fr); /* ✅ 2 cards */
   }
 
   nav ul {
-    flex-direction: column;
-    width: 100%;
+    display: none; /* simple mobile fix */
   }
 
-  .continer {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  }
-
-  .roww {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .logo img {
-    width: 100px;
-  }
-
-  .productprice {
-    font-size: 16px;
+  .card img {
+    height: 140px;
   }
 
   .card h2 {
     font-size: 14px;
   }
+
+  .addtocartbtn {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .footer .roww {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
-</style>
+    </style>
 </head>
-
 <body>
-
-<!-- NAVBAR -->
-<div class="navbar">
-  <div class="logo">
-    <img src="static/images/logo.png">
-  </div>
-
-  <nav>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="#productpage">Product</a></li>
-      <li><a href="#footers">About</a></li>
-      <li><a href="/contact">Contact</a></li>
-      <li><a href="/account">Account</a></li>
-    </ul>
-  </nav>
-
-  <img src="static/images/cart.png" class="cart">
-</div>
-
-<!-- PRODUCTS -->
-<div class="continer">
-
-  <div class="card">
-    <img src="/static/images/kids6.jpg">
-    <h2>Boys Cotton T-Shirt</h2>
-    <div class="rating"></div>
-
-    <div class="productpriceelm">
-      <p class="productprice">₹499</p>
-      <p class="productacutleprice">₹999</p>
-    </div>
-
-    <div class="productstockelm">
-      <p>Stock: 80</p>
-    </div>
-
-    <button class="addtocartbtn">🛒 Add To Cart</button>
-  </div>
-
-  <div class="card">
-    <img src="/static/images/kids7.png">
-    <h2>Boys Denim Jeans</h2>
-    <div class="rating"></div>
-
-    <div class="productpriceelm">
-      <p class="productprice">₹899</p>
-      <p class="productacutleprice">₹1599</p>
-    </div>
-
-    <div class="productstockelm">
-      <p>Stock: 60</p>
-    </div>
-
-    <button class="addtocartbtn">🛒 Add To Cart</button>
-  </div>
-
-</div>
-
-<!-- FOOTER -->
-<section class="footer" id="footers">
+    <div class="header">
   <div class="container">
-    <div class="roww">
-
-      <div>
-        <h3>Download App</h3>
-        <p>Android & iOS</p>
-      </div>
-
-      <div>
-        <h3>Links</h3>
-        <ul>
-          <li>Coupons</li>
-          <li>Blog</li>
-          <li>Return Policy</li>
-        </ul>
-      </div>
-
-      <div>
-        <h3>Follow</h3>
-        <ul>
-          <li>Facebook</li>
-          <li>Instagram</li>
-        </ul>
-      </div>
-
+  <div class="navbar">
+    <div class="logo">
+      <img src="static/images/logo.png"width="130px">
     </div>
+     <nav>
+      <ul>   <li><a href="/">Home</a></li>
+          <li><a href="#productpage">Product</a></li>
+          <li><a href="#footers">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/account">Account</a></li>
+        </ul>
+        </ul>
+     </nav>
+     <img src="static/images/cart.png" class="cart" width="30px" height="30px" >
   </div>
+
+         <!-- all product section here  -->
+
+
+    <div class="continer">
+
+  <!-- Boys 1 -->
+  <div class="card">    
+    <img src="/static/images/kids6.jpg">    
+    <h2>Boys Cotton T-Shirt</h2>    
+    <div class="rating"></div>    
+    <div class="productpriceelm">    
+        <p class="productprice">₹499</p>    
+        <p class="productacutleprice">₹999</p>    
+    </div>    
+    <div class="productstockelm">    
+        <p class="productpropty">Total Stock Available:</p>    
+        <p class="productstock">80</p>    
+    </div>    
+    <a href="/addtocart">  
+      <button class="addtocartbtn"><i>🛒</i> Add To Cart</button>  
+    </a>  
+  </div>  
+
+  <!-- Boys 2 -->
+  <div class="card">    
+    <img src="/static/images/kids7.png">    
+    <h2>Boys Denim Jeans</h2>    
+    <div class="rating"></div>    
+    <div class="productpriceelm">    
+        <p class="productprice">₹899</p>    
+        <p class="productacutleprice">₹1599</p>    
+    </div>    
+    <div class="productstockelm">    
+        <p class="productpropty">Total Stock Available:</p>    
+        <p class="productstock">60</p>    
+    </div>    
+    <a href="/addtocart">  
+      <button class="addtocartbtn"><i>🛒</i> Add To Cart</button>  
+    </a>  
+  </div>  
+
+  <!-- Boys 3 -->
+  <div class="card">    
+    <img src="/static/images/kids8,png">    
+    <h2>Boys Hoodie Jacket</h2>    
+    <div class="rating"></div>    
+    <div class="productpriceelm">    
+        <p class="productprice">₹1199</p>    
+        <p class="productacutleprice">₹1999</p>    
+    </div>    
+    <div class="productstockelm">    
+        <p class="productpropty">Total Stock Available:</p>    
+        <p class="productstock">45</p>    
+    </div>    
+    <a href="/addtocart">  
+      <button class="addtocartbtn"><i>🛒</i> Add To Cart</button>  
+    </a>  
+  </div>  
+
+  <!-- Boys 4 -->
+  <div class="card">    
+    <img src="/static/images/kids9,png">    
+    <h2>Boys Sports Shoes</h2>    
+    <div class="rating"></div>    
+    <div class="productpriceelm">    
+        <p class="productprice">₹1499</p>    
+        <p class="productacutleprice">₹2499</p>    
+    </div>    
+    <div class="productstockelm">    
+        <p class="productpropty">Total Stock Available:</p>    
+        <p class="productstock">30</p>    
+    </div>    
+    <a href="/addtocart">  
+      <button class="addtocartbtn"><i>🛒</i> Add To Cart</button>  
+    </a>  
+  </div>  
+
+  <!-- Girls 1 -->
+   
+  <div class="card">    
+    <img src="/static/images/kids1.png">    
+    <h2>Girls Floral Dress</h2>    
+    <div class="rating"></div>    
+    <div class="productpriceelm">    
+        <p class="productprice">₹799</p>    
+        <p class="productacutleprice">₹1499</p>    
+    </div>    
+    <div class="productstockelm">    
+        <p class="productpropty">Total Stock Available:</p>    
+        <p class="productstock">70</p>    
+    </div>    
+    <a href="/addtocart">  
+      <button class="addtocartbtn"><i>🛒</i> Add To Cart</button>  
+    </a>  
+  </div>  
+
+  <!-- Girls 2 -->
+  <div class="card">    
+    <img src="/static/images/kids2.png">    
+    <h2>Girls Party Frock</h2>    
+    <div class="rating"></div>    
+    <div class="productpriceelm">    
+        <p class="productprice">₹1299</p>    
+        <p class="productacutleprice">₹2499</p>    
+    </div>    
+    <div class="productstockelm">    
+        <p class="productpropty">Total Stock Available:</p>    
+        <p class="productstock">40</p>    
+    </div>    
+    <a href="/addtocart">  
+      <button class="addtocartbtn"><i>🛒</i> Add To Cart</button>  
+    </a>  
+  </div>  
+
+  <!-- Girls 3 -->
+  <div class="card">    
+    <img src="/static/images/kids3.png">    
+    <h2>Girls Denim Jacket</h2>    
+    <div class="rating"></div>    
+    <div class="productpriceelm">    
+        <p class="productprice">₹999</p>    
+        <p class="productacutleprice">₹1799</p>    
+    </div>    
+    <div class="productstockelm">    
+        <p class="productpropty">Total Stock Available:</p>    
+        <p class="productstock">55</p>    
+    </div>    
+    <a href="/addtocart">  
+      <button class="addtocartbtn"><i>🛒</i> Add To Cart</button>  
+    </a>  
+  </div>  
+
+  <!-- Girls 4 -->
+  <div class="card">    
+    <img src="/static/images/kids4.png">    
+    <h2>Girls Casual Sandals</h2>    
+    <div class="rating"></div>    
+    <div class="productpriceelm">    
+        <p class="productprice">₹699</p>    
+        <p class="productacutleprice">₹1299</p>    
+    </div>    
+    <div class="productstockelm">    
+        <p class="productpropty">Total Stock Available:</p>    
+        <p class="productstock">65</p>    
+    </div>    
+    <a href="/addtocart">  
+      <button class="addtocartbtn"><i>🛒</i> Add To Cart</button>  
+    </a>  
+  </div>  
+
+</div>
+
+
+   <section class="footer" id="footers">
+    <div class="footer">
+      <div class="container">
+        <div class="roww">
+          <div class="fotterclg1">
+            <h3>Download our App</h3>
+            <p>Download App for Android and ios mobile phone</p>
+            <div class="app">
+              <img src="images/play-store.png" >
+                <img src="images/app-store.png" >
+            </div>
+          </div>
+          <div class="fotterclg2">
+            <img src="images/logo-white.png" >
+            <div class="para">
+            <p>"Welcome to RedShope – your trusted online store for quality, value, and convenience. At RedShope, we’re committed to bringing you a wide range of products that match your lifestyle and budget, from everyday essentials to the latest trends. With fast delivery, secure payments, and dedicated customer service, we make shopping online simple and satisfying. Discover great deals and shop with confidence at RedShope – where quality meets convenience!"!</p>
+          </div>
+          </div>
+            <div class="fotterclg3">
+            <h3>Usefull Links</h3>
+           <ul>
+           <li>Coupons</li>
+           <li>Blog Pos</li>
+           <li>Return Policy</li>
+            <li>Join Affiliate</li>
+
+
+           </ul>
+          </div>
+           <div class="fotterclg4">
+            <h3>Follw US</h3>
+           <ul>
+           <li>Facebook</li>
+           <li>Twitter</li>
+           <li>Instagram</li>
+            <li>Youtube</li>
+
+
+           </ul>
+          </div>
+        </div>
+      </div>
+    </div>   
+
 </section>
 
-<!-- JS SAME (NO CHANGE) -->
-<script>
+  <script>
 document.addEventListener("DOMContentLoaded", () => {
   const addToCartButtons = document.querySelectorAll(".addtocartbtn");
 
@@ -334,18 +464,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const name = card.querySelector("h2").innerText.trim();
       const price = parseFloat(card.querySelector(".productprice").innerText.replace("₹", "").trim());
       const originalPrice = parseFloat(card.querySelector(".productacutleprice").innerText.replace("₹", "").trim());
+      const stock = parseInt(card.querySelector(".productstock").innerText.trim());
+      const imageSrc = card.querySelector("img").getAttribute("src");
+
+      // Use a unique id - you can use index or better a generated id
+      const id = index + 1;
 
       const productData = {
-        id: index + 1,
+        id,
         name,
         price,
         originalPrice,
+        stock,
+        image: imageSrc,
         quantity: 1
       };
 
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-      const existing = cart.find(item => item.id === productData.id);
+      const existing = cart.find(item => item.id === id);
 
       if (existing) {
         existing.quantity += 1;
@@ -354,8 +490,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       localStorage.setItem("cart", JSON.stringify(cart));
-
-      window.location.href = "/addtocart";
+     window.location.href = "/addtocart"; 
     });
   });
 });
