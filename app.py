@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.secret_key = 'account'
 
 # ⚠️ For Render: change this to PostgreSQL later
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root@localhost/user_signup'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 app.permanent_session_lifetime = timedelta(days=10)
@@ -114,12 +114,12 @@ def electronics():
 
 @app.route('/Stationery')
 def stationery():
-    return render_template('Stationery.html')
+    return render_template('stationery.html')
 
 
 @app.route('/Gaming')
 def gaming():
-    return render_template('Gaming.html')
+    return render_template('gaming.html')
 
 
 @app.route('/kidsproduct')
