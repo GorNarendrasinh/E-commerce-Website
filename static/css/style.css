@@ -209,24 +209,39 @@ a {
    
 
 
-/* Hero */
+/* ================= HERO SECTION ================= */
+
 .hero {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 40px 30px;
+  gap: 40px;
+  padding: 60px 5%;
   background: #ffecec;
-  flex-wrap: wrap;
+  min-height: 80vh;
 }
 
 .hero-content {
   flex: 1;
-  max-width: 500px;
+  max-width: 550px;
+}
+
+.hero-content h3 {
+  color: #e60023;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
 .hero-content h1 {
-  font-size: 36px;
-  margin: 10px 0;
+  font-size: 3rem;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.hero-content p {
+  margin-bottom: 15px;
+  color: #555;
+  line-height: 1.6;
 }
 
 .hero-content a {
@@ -235,53 +250,99 @@ a {
   font-weight: bold;
 }
 
-.hero-image {
+.hero-content button {
+  padding: 12px 25px;
+  border: none;
+  background: #e60023;
+  border-radius: 6px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
+.hero-content button:hover {
+  transform: translateY(-3px);
+}
+
+.hero-content .btn {
+  color: white;
+}
+
+.hero-image {
   flex: 1;
-  text-align: right;
+  text-align: center;
 }
 
 .hero-image img {
-  max-width: 80%;
+  width: 100%;
+  max-width: 550px;
   height: auto;
+  object-fit: contain;
 }
 
-/* Media Queries */
+/* ================= MOBILE ================= */
+
 @media (max-width: 768px) {
-  .nav-links {
-    flex-direction: column;
-    background-color: #fff;
-    position: absolute;
-    top: 70px;
-    right: 0;
-    width: 150px;
-    padding: 10px 0;
-    display: none;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
 
   .hero {
     flex-direction: column-reverse;
     text-align: center;
+    padding: 40px 20px;
+    gap: 25px;
+    min-height: auto;
   }
 
   .hero-content {
     max-width: 100%;
-    margin-top: 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content h3 {
+    font-size: 18px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+
+  .hero-content button {
+    width: 140px;
+    margin: 5px;
   }
 
   .hero-image {
-    text-align: center;
+    width: 100%;
+  }
+
+  .hero-image img {
+    width: 90%;
+    max-width: 320px;
   }
 }
 
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 480px) {
+
+  .hero {
+    padding: 30px 15px;
+  }
+
+  .hero-content h1 {
+    font-size: 1.7rem;
+  }
+
+  .hero-content p {
+    font-size: 13px;
+  }
+
+  .hero-image img {
+    max-width: 260px;
+  }
+}
 /* Categories Section */
 .categories-section {
   padding: 60px 20px;
