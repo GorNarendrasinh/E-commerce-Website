@@ -24,6 +24,7 @@
           <li><a href="#footers">About</a></li>
           <li><a href="/contact">Contact</a></li>
           <li><a href="/account">Account</a></li>
+           <li><a href="/result">Dashboard</a></li>
         </ul>
       </nav>
     </div>
@@ -46,9 +47,10 @@
       <button><a href="/account" class="btn">Sing up</a></button>
     <button><a href="/login" class="btn">Login</a></button>
     </div>
-    <div class="hero-image">
-      <img src="static/images/heroimage.png" alt="Product Image">
-    </div>
+  <div class="hero-image">
+    <img src="{{ url_for('static', filename='images/heroimage.png') }}"
+         alt="Product Image">
+</div>
     
   </section>
 
