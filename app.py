@@ -3,18 +3,26 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import timedelta
 from passlib.hash import sha256_crypt
 import pymysql
+import os
 
 pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
-app.secret_key = 'account'
 
-# ⚠️ For Render: change this to PostgreSQL later
+app.secret_key = os.environ.get(
+    'SECRET_KEY',
+    'dev-secret-key'
+)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 app.permanent_session_lifetime = timedelta(days=10)
+
 db = SQLAlchemy(app)
+
+
+
 
 # ---------------- DATABASE MODELS ----------------
 
@@ -813,15 +821,9 @@ def logout():
         url_for('home')
     )
 
-# ---------------- CHECKOUT (FIXED) ----------------
-
-
-
-
 # ---------------- MAIN ----------------
-
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
 
-    app.run(debug=True)
+    app.run()
