@@ -1,126 +1,1199 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RedStore Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>RedStore | Create Account</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --red: #e63946;
+      --red-dark: #c9182b;
+      --red-light: #ff6673;
+      --dark: #111827;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --white: #ffffff;
     }
 
     body {
       min-height: 100vh;
+      font-family: "Inter", sans-serif;
+      background: #f8f9fb;
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       MAIN PAGE
+    ========================= */
+
+    .signup-page {
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+    }
+
+    /* =========================
+       LEFT BRAND SECTION
+    ========================= */
+
+    .brand-section {
+      width: 52%;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(191, 15, 35, 0.96),
+          rgba(230, 57, 70, 0.88)
+        ),
+        url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=85")
+        center/cover;
+
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 55px 7%;
+    }
+
+    /* Decorative circles */
+
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      pointer-events: none;
+    }
+
+    .circle-one {
+      width: 430px;
+      height: 430px;
+      top: -170px;
+      right: -150px;
+    }
+
+    .circle-two {
+      width: 300px;
+      height: 300px;
+      bottom: -130px;
+      left: -100px;
+    }
+
+    .circle-three {
+      width: 150px;
+      height: 150px;
+      bottom: 25%;
+      right: 12%;
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* Logo */
+
+    .brand-logo {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.25);
+
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 20px;
+
+      font-size: 25px;
+      backdrop-filter: blur(10px);
     }
 
-    .form-container {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(20px);
-      border-radius: 16px;
-      padding: 35px 40px;
-      max-width: 420px;
+    .brand-logo span {
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    /* Brand Content */
+
+    .brand-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+    }
+
+    .small-heading {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 9px 15px;
+      border-radius: 50px;
+
+      background: rgba(255,255,255,0.13);
+      border: 1px solid rgba(255,255,255,0.18);
+
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+
+      margin-bottom: 25px;
+      backdrop-filter: blur(10px);
+    }
+
+    .small-heading::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 12px white;
+    }
+
+    .brand-content h1 {
+      font-size: clamp(42px, 5vw, 72px);
+      line-height: 1.05;
+      letter-spacing: -3px;
+      font-weight: 800;
+      margin-bottom: 25px;
+    }
+
+    .brand-content h1 span {
+      color: #ffd5d9;
+    }
+
+    .brand-content p {
+      max-width: 540px;
+      font-size: 17px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.88);
+    }
+
+    /* Features */
+
+    .features {
+      position: relative;
+      z-index: 2;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+
+      margin-top: 40px;
+    }
+
+    .feature {
+      padding: 17px 15px;
+      border-radius: 15px;
+
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.15);
+
+      backdrop-filter: blur(12px);
+    }
+
+    .feature-icon {
+      font-size: 21px;
+      margin-bottom: 9px;
+    }
+
+    .feature strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .feature small {
+      font-size: 11px;
+      color: rgba(255,255,255,0.72);
+    }
+
+    /* Footer */
+
+    .brand-footer {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* =========================
+       RIGHT FORM SECTION
+    ========================= */
+
+    .form-section {
+      width: 48%;
+      min-height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 50px 7%;
+      background: #ffffff;
+    }
+
+    .form-box {
       width: 100%;
-      color: #fff;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 5);
-      text-align: center;
+      max-width: 540px;
     }
 
-    .form-container h2 {
-      font-size: 28px;
-      margin-bottom: 20px;
-      font-weight: 700;
+    /* Header */
+
+    .form-header {
+      margin-bottom: 30px;
     }
+
+    .form-header .welcome {
+      color: var(--red);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      margin-bottom: 9px;
+    }
+
+    .form-header h2 {
+      font-size: 38px;
+      line-height: 1.15;
+      color: var(--dark);
+      letter-spacing: -1.5px;
+      margin-bottom: 10px;
+    }
+
+    .form-header p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Flash Messages */
+
+    .flash-messages {
+      margin-bottom: 20px;
+    }
+
+    .flash-message {
+      padding: 12px 15px;
+      border-radius: 10px;
+
+      background: #fff1f2;
+      color: #be123c;
+
+      border-left: 4px solid var(--red);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    /* Form */
 
     form {
-      display: flex;
-      flex-direction: column;
+      width: 100%;
+    }
+
+    .input-group {
+      margin-bottom: 18px;
     }
 
     label {
-      text-align: left;
-      margin: 12px 0 5px;
-      font-weight: 500;
-      color: #f0f0f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      color: #374151;
+      font-size: 13px;
+      font-weight: 600;
+
+      margin-bottom: 8px;
+    }
+
+    .required {
+      color: var(--red);
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      font-size: 17px;
+      color: #9ca3af;
+
+      pointer-events: none;
     }
 
     input {
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.15);
-      color: #fff;
-      font-size: 15px;
-      transition: background 0.3s ease;
+      width: 100%;
+      height: 52px;
+
+      padding: 0 16px 0 45px;
+
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+
+      background: #f9fafb;
+
+      color: var(--text);
+      font-size: 14px;
+
+      outline: none;
+
+      transition: all 0.25s ease;
+    }
+
+    input::placeholder {
+      color: #a1a1aa;
+    }
+
+    input:hover {
+      border-color: #d1d5db;
+      background: #ffffff;
     }
 
     input:focus {
-      outline: none;
-      background: rgba(255, 255, 255, 0.25);
-      box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+      background: #ffffff;
+      border-color: var(--red);
+
+      box-shadow:
+        0 0 0 4px rgba(230,57,70,0.09);
     }
 
-    button {
-      margin-top: 25px;
-      padding: 12px;
+    input:focus + .input-line {
+      transform: scaleX(1);
+    }
+
+    .input-line {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 0;
+
+      height: 2px;
+      background: var(--red);
+
+      transform: scaleX(0);
+      transform-origin: center;
+
+      transition: transform 0.25s ease;
+      border-radius: 5px;
+    }
+
+    /* Password */
+
+    .password-toggle {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+
       border: none;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #ff758c, #d61b31);
-      color: white;
+      background: transparent;
+
+      color: #9ca3af;
       font-size: 16px;
-      font-weight: bold;
+
       cursor: pointer;
-      transition: background 0.3s ease;
+      padding: 5px;
     }
 
-    button:hover {
-      background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    .password-toggle:hover {
+      color: var(--red);
+      transform: translateY(-50%);
     }
 
-    @media (max-width: 600px) {
-      .form-container {
-        padding: 25px 20px;
+    #password {
+      padding-right: 45px;
+    }
+
+    /* Password strength */
+
+    .password-strength {
+      display: none;
+      margin-top: 8px;
+    }
+
+    .strength-bars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 5px;
+    }
+
+    .strength-bars span {
+      height: 4px;
+      flex: 1;
+      background: #e5e7eb;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .strength-text {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    /* Terms */
+
+    .terms {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+
+      margin: 8px 0 22px;
+
+      color: #6b7280;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .terms input {
+      width: 17px;
+      height: 17px;
+      min-width: 17px;
+      padding: 0;
+
+      margin-top: 1px;
+
+      accent-color: var(--red);
+      box-shadow: none;
+    }
+
+    .terms a {
+      color: var(--red);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* Button */
+
+    .signup-btn {
+      width: 100%;
+      height: 54px;
+
+      border: none;
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--red-light),
+          var(--red-dark)
+        );
+
+      color: white;
+
+      font-size: 14px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 10px 25px rgba(230,57,70,0.22);
+
+      transition: all 0.25s ease;
+
+      position: relative;
+      overflow: hidden;
+    }
+
+    .signup-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+
+      width: 100%;
+      height: 100%;
+
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.25),
+        transparent
+      );
+
+      transition: 0.5s;
+    }
+
+    .signup-btn:hover::before {
+      left: 100%;
+    }
+
+    .signup-btn:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 14px 30px rgba(230,57,70,0.30);
+    }
+
+    .signup-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Login */
+
+    .login-text {
+      text-align: center;
+      margin-top: 22px;
+
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .login-text a {
+      color: var(--red);
+      font-weight: 700;
+      text-decoration: none;
+      margin-left: 4px;
+    }
+
+    .login-text a:hover {
+      text-decoration: underline;
+    }
+
+    /* Secure */
+
+    .secure-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+
+      margin-top: 25px;
+
+      color: #9ca3af;
+      font-size: 11px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 1000px) {
+
+      .brand-section {
+        padding: 40px;
       }
 
-      .form-container h2 {
-        font-size: 24px;
+      .form-section {
+        padding: 40px;
+      }
+
+      .brand-content h1 {
+        font-size: 48px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .feature {
+        padding: 12px;
+      }
+    }
+
+    @media (max-width: 760px) {
+
+      .signup-page {
+        flex-direction: column;
+      }
+
+      .brand-section {
+        width: 100%;
+        min-height: auto;
+        padding: 35px 25px;
+      }
+
+      .brand-content {
+        padding: 45px 0 20px;
+      }
+
+      .brand-content h1 {
+        font-size: 42px;
+      }
+
+      .brand-content p {
+        font-size: 14px;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-top: 25px;
+      }
+
+      .feature {
+        padding: 12px 8px;
+      }
+
+      .feature-icon {
+        font-size: 18px;
+      }
+
+      .feature strong {
+        font-size: 11px;
+      }
+
+      .feature small {
+        display: none;
+      }
+
+      .brand-footer {
+        margin-top: 30px;
+      }
+
+      .form-section {
+        width: 100%;
+        min-height: auto;
+        padding: 45px 25px;
+      }
+
+      .form-header h2 {
+        font-size: 31px;
+      }
+    }
+
+    @media (max-width: 430px) {
+
+      .brand-section {
+        padding: 28px 20px;
+      }
+
+      .brand-logo span {
+        font-size: 23px;
+      }
+
+      .logo-icon {
+        width: 42px;
+        height: 42px;
+      }
+
+      .brand-content h1 {
+        font-size: 36px;
+        letter-spacing: -2px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .feature {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .feature-icon {
+        margin: 0;
+      }
+
+      .form-section {
+        padding: 35px 20px;
       }
     }
   </style>
 </head>
+
 <body>
-    <div class="form-container">
-    <h4>Welcome to the SignUp</h4>
-    <h3>
-      {%  for message in get_flashed_messages() %}
-      {{message}}
-      {% endfor %}            
-    </h3>
-    <h2>🔐 Create Account</h2>
- <form action="/account" method="post">
 
-  <label for="username">Username</label>
-  <input type="text" id="username" name="name" required />
+<div class="signup-page">
 
-  <label for="email">Email</label>
-  <input type="email" id="email" name="email" required />
+  <!-- =========================
+       LEFT BRAND AREA
+  ========================== -->
 
-  <label for="mobile">Mobile Number</label>
-  <input type="text" id="mobile" name="mobile" required />
+  <section class="brand-section">
 
-  <label for="password">Password</label>
-  <input type="password" id="password" name="password" required />
+    <div class="circle circle-one"></div>
+    <div class="circle circle-two"></div>
+    <div class="circle circle-three"></div>
 
-  <button type="submit">Sign Up</button>
-</form>
+    <!-- Logo -->
+
+    <div class="brand-logo">
+      <div class="logo-icon">🛍️</div>
+      <span>RedStore</span>
     </div>
- 
+
+    <!-- Main Content -->
+
+    <div class="brand-content">
+
+      <div class="small-heading">
+        YOUR SHOPPING JOURNEY STARTS HERE
+      </div>
+
+      <h1>
+        Shop smarter.<br>
+        Live <span>better.</span>
+      </h1>
+
+      <p>
+        Create your RedStore account and unlock a smarter,
+        faster and more personalized shopping experience.
+        Discover trending products, exclusive deals and
+        everything you love — all in one place.
+      </p>
+
+      <div class="features">
+
+        <div class="feature">
+          <div class="feature-icon">🚚</div>
+          <div>
+            <strong>Fast Delivery</strong>
+            <small>Quick & reliable</small>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🔒</div>
+          <div>
+            <strong>Secure Shopping</strong>
+            <small>Your data is safe</small>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">✨</div>
+          <div>
+            <strong>Best Deals</strong>
+            <small>Exclusive offers</small>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+
+    <div class="brand-footer">
+      <span>© 2026 RedStore</span>
+      <span>Made for modern shoppers ❤️</span>
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       RIGHT FORM AREA
+  ========================== -->
+
+  <section class="form-section">
+
+    <div class="form-box">
+
+      <div class="form-header">
+
+        <div class="welcome">
+          Welcome to RedStore
+        </div>
+
+        <h2>Create your account</h2>
+
+        <p>
+          Join thousands of shoppers and start your
+          shopping journey today.
+        </p>
+
+      </div>
+
+
+      <!-- Flash Messages -->
+
+      {% set messages = get_flashed_messages() %}
+
+      {% if messages %}
+
+        <div class="flash-messages">
+
+          {% for message in messages %}
+
+            <div class="flash-message">
+              {{ message }}
+            </div>
+
+          {% endfor %}
+
+        </div>
+
+      {% endif %}
+
+
+      <!-- Registration Form -->
+
+      <form action="/account" method="POST">
+
+        <!-- Username -->
+
+        <div class="input-group">
+
+          <label for="username">
+            Username
+            <span class="required">*</span>
+          </label>
+
+          <div class="input-wrapper">
+
+            <span class="input-icon">👤</span>
+
+            <input
+              type="text"
+              id="username"
+              name="name"
+              placeholder="Enter your username"
+              autocomplete="username"
+              required
+            >
+
+            <div class="input-line"></div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Email -->
+
+        <div class="input-group">
+
+          <label for="email">
+            Email Address
+            <span class="required">*</span>
+          </label>
+
+          <div class="input-wrapper">
+
+            <span class="input-icon">✉️</span>
+
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="name@example.com"
+              autocomplete="email"
+              required
+            >
+
+            <div class="input-line"></div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Mobile -->
+
+        <div class="input-group">
+
+          <label for="mobile">
+            Mobile Number
+            <span class="required">*</span>
+          </label>
+
+          <div class="input-wrapper">
+
+            <span class="input-icon">📱</span>
+
+            <input
+              type="tel"
+              id="mobile"
+              name="mobile"
+              placeholder="10-digit mobile number"
+              maxlength="10"
+              autocomplete="tel"
+              required
+            >
+
+            <div class="input-line"></div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Password -->
+
+        <div class="input-group">
+
+          <label for="password">
+            Password
+            <span class="required">*</span>
+          </label>
+
+          <div class="input-wrapper">
+
+            <span class="input-icon">🔐</span>
+
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Create a strong password"
+              autocomplete="new-password"
+              required
+            >
+
+            <button
+              type="button"
+              class="password-toggle"
+              onclick="togglePassword()"
+              id="passwordToggle"
+              aria-label="Show password"
+            >
+              👁️
+            </button>
+
+            <div class="input-line"></div>
+
+          </div>
+
+          <!-- Password Strength -->
+
+          <div class="password-strength" id="passwordStrength">
+
+            <div class="strength-bars">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="strength-text" id="strengthText">
+              Password strength
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Terms -->
+
+        <div class="terms">
+
+          <input
+            type="checkbox"
+            id="terms"
+            required
+          >
+
+          <label for="terms">
+            I agree to the
+            <a href="#">Terms & Conditions</a>
+            and
+            <a href="#">Privacy Policy</a>.
+          </label>
+
+        </div>
+
+
+        <!-- Submit -->
+
+        <button
+          type="submit"
+          class="signup-btn"
+        >
+          Create My Account&nbsp; →
+        </button>
+
+      </form>
+
+
+      <!-- Login -->
+
+      <div class="login-text">
+
+        Already have an account?
+
+        <a href="/login">
+          login
+        </a>
+
+      </div>
+
+
+      <!-- Secure -->
+
+      <div class="secure-note">
+        🔒 Secure & encrypted registration
+      </div>
+
+    </div>
+
+  </section>
+
+</div>
+
+
+<script>
+
+  /* =========================
+     SHOW / HIDE PASSWORD
+  ========================== */
+
+  function togglePassword() {
+
+    const password =
+      document.getElementById("password");
+
+    const toggle =
+      document.getElementById("passwordToggle");
+
+    if (password.type === "password") {
+
+      password.type = "text";
+      toggle.textContent = "🙈";
+
+    } else {
+
+      password.type = "password";
+      toggle.textContent = "👁️";
+
+    }
+  }
+
+
+  /* =========================
+     PASSWORD STRENGTH
+  ========================== */
+
+  const passwordInput =
+    document.getElementById("password");
+
+  const strengthBox =
+    document.getElementById("passwordStrength");
+
+  const strengthText =
+    document.getElementById("strengthText");
+
+  const strengthBars =
+    document.querySelectorAll(".strength-bars span");
+
+
+  passwordInput.addEventListener("input", function () {
+
+    const password = this.value;
+
+    if (!password.length) {
+
+      strengthBox.style.display = "none";
+      return;
+
+    }
+
+    strengthBox.style.display = "block";
+
+    let strength = 0;
+
+    if (password.length >= 6)
+      strength++;
+
+    if (password.length >= 8)
+      strength++;
+
+    if (/[A-Z]/.test(password))
+      strength++;
+
+    if (/[0-9!@#$%^&*]/.test(password))
+      strength++;
+
+
+    strengthBars.forEach((bar, index) => {
+
+      bar.style.background = "#e5e7eb";
+
+      if (index < strength) {
+
+        if (strength === 1) {
+          bar.style.background = "#ef4444";
+        }
+
+        else if (strength === 2) {
+          bar.style.background = "#f59e0b";
+        }
+
+        else if (strength === 3) {
+          bar.style.background = "#22c55e";
+        }
+
+        else {
+          bar.style.background = "#16a34a";
+        }
+      }
+
+    });
+
+
+    if (strength === 1) {
+
+      strengthText.textContent =
+        "Weak password";
+
+    } else if (strength === 2) {
+
+      strengthText.textContent =
+        "Fair password";
+
+    } else if (strength === 3) {
+
+      strengthText.textContent =
+        "Good password";
+
+    } else {
+
+      strengthText.textContent =
+        "Strong password";
+
+    }
+
+  });
+
+
+  /* =========================
+     MOBILE NUMBER
+  ========================== */
+
+  document
+    .getElementById("mobile")
+    .addEventListener("input", function () {
+
+      this.value =
+        this.value.replace(/\D/g, "").slice(0, 10);
+
+    });
+
+</script>
+
 </body>
 </html>
+
