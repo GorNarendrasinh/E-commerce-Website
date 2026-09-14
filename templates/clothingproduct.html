@@ -3,516 +3,633 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>RedShope - Store</title>
     <style>
+        /* ===== RESET & NORMAL THEME VARIABLES ===== */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: Arial, sans-serif;
+        }
 
-     /* Reset default browser styles */
-/* === NAVIGATION BAR STYLES === */
-/* ===== RESET ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
+        body {
+          overflow-x: hidden;
+          background-color: #f8f8f8;
+          color: #333;
+        }
 
-body {
-  overflow-x: hidden;
-  background-color: #f8f8f8;
-}
+        /* ===== NAVBAR ===== */
+        .navbar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          background: #fff;
+          padding: 15px 20px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          border-bottom: 1px solid #eee;
+        }
 
-/* ===== NAVBAR ===== */
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: #fff;
-  padding: 10px 20px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+        .logo img {
+          width: 120px;
+        }
 
-.logo img {
-  width: 120px;
-}
+        nav ul {
+          list-style: none;
+          display: flex;
+          gap: 20px;
+        }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
+        nav ul li a {
+          text-decoration: none;
+          color: #333;
+          font-size: 15px;
+          padding: 6px 10px;
+          transition: 0.3s;
+        }
 
-nav ul li a {
-  text-decoration: none;
-  color: #333;
-  font-size: 15px;
-  padding: 6px 10px;
-  transition: 0.3s;
-}
+        nav ul li a:hover {
+          background: #f0f0f0;
+          color: #007bff;
+          border-radius: 4px;
+        }
 
-nav ul li a:hover {
-  background: #f0f0f0;
-  color: #007bff;
-  border-radius: 4px;
-}
+        .nav-right-actions {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+        }
 
-.cart {
-  width: 28px;
-}
+        .cart-container {
+          position: relative;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+        }
 
-/* ===== SECTION HEADINGS ===== */
-.man, .women {
-  background-color: lightpink;
-  padding: 10px;
-  text-align: center;
-  margin: 30px auto;
-  width: fit-content;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
+        .cart {
+          width: 30px;
+          height: 30px;
+          object-fit: contain;
+        }
 
-/* ===== PRODUCT GRID ===== */
-.continer {
-  max-width: 1200px;
-  margin: auto;
-  padding: 10px;
+        .cart-count {
+          position: absolute;
+          top: -8px;
+          right: -10px;
+          background: red;
+          color: white;
+          font-size: 11px;
+          padding: 2px 6px;
+          border-radius: 50%;
+          font-weight: bold;
+        }
 
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-}
+        /* Mobile Hamburger Menu Icon */
+        .menu-toggle {
+          display: none;
+          flex-direction: column;
+          cursor: pointer;
+          gap: 5px;
+          padding: 5px;
+        }
 
-/* ===== CARD ===== */
-.card {
-  width: 100%;
-  background: #fff;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #eee;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: 0.3s;
-}
+        .menu-toggle span {
+          width: 25px;
+          height: 3px;
+          background: #333;
+          border-radius: 2px;
+          transition: 0.3s;
+        }
 
-.card:hover {
-  transform: translateY(-5px);
-}
+        /* ===== SECTION HEADINGS ===== */
+        .man, .women {
+          background-color: lightpink;
+          color: #333;
+          padding: 10px 20px;
+          text-align: center;
+          margin: 40px auto 20px auto;
+          width: fit-content;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
 
-.card img {
-  width: 100%;
-  height: auto;        /* IMPORTANT */
-  object-fit: contain; /* full image show */
-  background: #fff;    /* optional (empty space clean dikhega) */
-}
-.card h2 {
-  font-size: 16px;
-  margin: 10px 0;
-  color: #444;
-}
+        /* ===== PRODUCT GRID ===== */
+        .continer {
+          max-width: 1200px;
+          margin: auto;
+          padding: 10px;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+        }
 
-/* ===== RATING ===== */
-.rating::before {
-  content: "★★★★★";
-  letter-spacing: 3px;
-  color: #f5b50a;
-  font-size: 16px;
-}
+        /* ===== CARD ===== */
+        .card {
+          width: 100%;
+          background: #fff;
+          border-radius: 8px;
+          padding: 15px;
+          text-align: center;
+          border: 1px solid #eee;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          transition: 0.3s;
+        }
 
-/* ===== PRICE ===== */
-.productpriceelm {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 8px 0;
-}
+        .card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
 
-.productprice {
-  color: red;
-  font-weight: bold;
-}
+        .card img {
+          width: 100%;
+          height: 180px;
+          object-fit: contain;
+          background: #fff;
+        }
 
-.productacutleprice {
-  text-decoration: line-through;
-  color: #888;
-}
+        .card h2 {
+          font-size: 16px;
+          margin: 10px 0;
+          color: #444;
+        }
 
-/* ===== STOCK ===== */
-.productstockelm {
-  font-size: 13px;
-  margin-bottom: 10px;
-}
+        /* ===== RATING ===== */
+        .rating::before {
+          content: "★★★★★";
+          letter-spacing: 3px;
+          color: #f5b50a;
+          font-size: 14px;
+        }
 
-/* ===== BUTTON ===== */
-.addtocartbtn {
-  background: black;
-  color: white;
-  border: none;
-  padding: 10px;
-  width: 90%;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+        /* ===== PRICE ===== */
+        .productpriceelm {
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+          margin: 8px 0;
+        }
 
-.addtocartbtn:hover {
-  background: orange;
-}
+        .productprice {
+          color: red;
+          font-weight: bold;
+        }
 
-/* ===== FOOTER ===== */
-.footer {
-  background: black;
-  color: white;
-  padding: 40px 20px;
-  margin-top: 40px;
-}
+        .productacutleprice {
+          text-decoration: line-through;
+          color: #888;
+        }
 
-.footer .roww {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
+        /* ===== STOCK ===== */
+        .productstockelm {
+          font-size: 13px;
+          margin-bottom: 15px;
+          color: #666;
+        }
 
-.footer .roww > div {
-  flex: 1;
-  min-width: 200px;
-}
+        /* ===== BUTTON ===== */
+        .addtocartbtn {
+          background: black;
+          color: white;
+          border: none;
+          padding: 10px;
+          width: 100%;
+          border-radius: 20px;
+          cursor: pointer;
+          transition: 0.3s;
+          font-weight: bold;
+        }
 
-.footer p {
-  font-size: 14px;
-  color: #ccc;
-}
+        .addtocartbtn:hover {
+          background: orange;
+        }
 
-.footer ul {
-  list-style: none;
-}
+        /* ===== FOOTER ===== */
+        .footer {
+          background: black;
+          color: white;
+          padding: 40px 20px;
+          margin-top: 60px;
+        }
 
-.footer ul li {
-  margin: 5px 0;
-  color: #ccc;
-}
+        .footer .roww {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 30px;
+          justify-content: space-between;
+        }
 
-/* ===== RESPONSIVE ===== */
+        .footer .roww > div {
+          flex: 1;
+          min-width: 220px;
+        }
 
-/* Tablet */
-@media (max-width: 992px) {
-  .continer {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
+        .footer p, .footer ul li {
+          font-size: 14px;
+          color: #ccc;
+          margin: 6px 0;
+        }
 
-/* Mobile */
-@media (max-width: 600px) {
+        .footer h3 {
+          margin-bottom: 12px;
+          color: #fff;
+        }
 
-  .continer {
-    grid-template-columns: repeat(2, 1fr); /* ✅ 2 cards */
-  }
+        .footer ul {
+          list-style: none;
+        }
 
-  nav ul {
-    display: none; /* simple mobile fix */
-  }
+        .app img {
+          width: 120px;
+          margin-top: 10px;
+          display: block;
+        }
 
-  .card img {
-    height: 140px;
-  }
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 992px) {
+          .continer {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
 
-  .card h2 {
-    font-size: 14px;
-  }
+        @media (max-width: 768px) {
+          nav ul {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 65px;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 5px rgba(0,0,0,0.1);
+            border-bottom: 1px solid #eee;
+            text-align: center;
+          }
 
-  .addtocartbtn {
-    font-size: 12px;
-    padding: 8px;
-  }
+          nav ul.active {
+            display: flex;
+          }
 
-  .footer .roww {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-}
+          nav ul li {
+            margin: 10px 0;
+          }
 
+          .menu-toggle {
+            display: flex;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .continer {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 5px;
+          }
+
+          .card {
+            padding: 10px;
+          }
+
+          .card img {
+            height: 130px;
+          }
+
+          .card h2 {
+            font-size: 13px;
+          }
+
+          .addtocartbtn {
+            font-size: 11px;
+            padding: 8px;
+          }
+
+          .footer .roww {
+            flex-direction: column;
+            text-align: center;
+          }
+          
+          .app {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+          }
+          .app img {
+            margin-top: 0;
+          }
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-  <div class="container">
-  <div class="navbar">
-    <div class="logo">
-     <a href=/addtocart <img src="static/images/logo.png"width="130px">
-    </div>
-     <nav>
-      <ul>
-              <li><a href="/">Home</a></li>
+
+  <div class="header">
+    <div class="navbar">
+      <div class="logo">
+        <a href="/"><img src="static/images/logo.png" alt="Logo" width="130px"></a>
+      </div>
+      
+      <nav>
+        <ul id="nav-links">
+          <li><a href="/">Home</a></li>
           <li><a href="#productpage">Product</a></li>
           <li><a href="#footers">About</a></li>
           <li><a href="/contact">Contact</a></li>
           <li><a href="/account">Account</a></li>
         </ul>
-     </nav>
-     <img  src="static/images/cart.png" class="cart" width="30px" height="30px" >
-  </div>
+      </nav>
 
-         <!-- all product section here  -->
-<section id="productpage">
-  <!-- ================= Men Collection ================= -->
-  <h2 class="man"> Men's Collections</h2>
-  <div class="continer">
-
-    <div class="card">
-      <img src="static/images/man1.png.PNG">
-      <h2>Classic Denim Jacket</h2>
-      <div class="rating"></div>
-      <div class="productpriceelm">
-        <p class="productprice">₹1499</p>
-        <p class="productacutleprice">₹2999</p>
+      <div class="nav-right-actions">
+        <a href="/addtocart" style="text-decoration: none;">
+          <div class="cart-container">
+            <img src="static/images/cart.png" class="cart" alt="Cart" width="30px" height="30px">
+            <span class="cart-count" id="cart-count">0</span>
+          </div>
+        </a>
+        <div class="menu-toggle" id="mobile-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
-      <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">40</p></div>
-      <a href="/addtocart"><button class="addtocartbtn">🛒 Add To Cart</button></a>
-    </div>
-
-    <div class="card">
-      <img src="static/images/man2.png.PNG">
-      <h2>Casual White Shirt</h2>
-      <div class="rating"></div>
-      <div class="productpriceelm"><p class="productprice">₹899</p><p class="productacutleprice">₹1999</p></div>
-      <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">30</p></div>
-      <a href="/addtocart"><button class="addtocartbtn">🛒 Add To Cart</button></a>
-    </div>
-
-    <div class="card">
-      <img src="static/images/man3.png.PNG">
-      <h2>Formal Grey Shirt</h2>
-      <div class="rating"></div>
-      <div class="productpriceelm"><p class="productprice">₹1099</p><p class="productacutleprice">₹2499</p></div>
-      <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">25</p></div>
-      <a href="/addtocart"><button class="addtocartbtn">🛒 Add To Cart</button></a>
-    </div>
-
-    <div class="card">
-      <img src="static/images/man4.png.PNG">
-      <h2>Red Checked Shirt</h2>
-      <div class="rating"></div>
-      <div class="productpriceelm"><p class="productprice">₹1199</p><p class="productacutleprice">₹2399</p></div>
-      <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">45</p></div>
-      <a href="/addtocart"><button class="addtocartbtn">🛒 Add To Cart</button></a>
-    </div>
-
-    <div class="card">
-      <img src="static/images/man5.png.PNG">
-      <h2>Light Pink Shirt</h2>
-      <div class="rating"></div>
-      <div class="productpriceelm"><p class="productprice">₹799</p><p class="productacutleprice">₹1599</p></div>
-      <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">20</p></div>
-      <a href="/addtocart"><button class="addtocartbtn">🛒 Add To Cart</button></a>
-    </div>
-
-    <div class="card">
-      <img src="static/images/man6.png.PNG">
-      <h2>Navy Blue Blazer</h2>
-      <div class="rating"></div>
-      <div class="productpriceelm"><p class="productprice">₹2499</p><p class="productacutleprice">₹4999</p></div>
-      <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">15</p></div>
-      <a href="/addtocart"><button class="addtocartbtn">🛒 Add To Cart</button></a>
-    </div>
-
-    <div class="card">
-      <img src="static/images/man7.png.PNG">
-      <h2>Sky Blue Shirt</h2>
-      <div class="rating"></div>
-      <div class="productpriceelm"><p class="productprice">₹999</p><p class="productacutleprice">₹1999</p></div>
-      <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">35</p></div>
-      <a href="/addtocart"><button class="addtocartbtn">🛒 Add To Cart</button></a>
-    </div>
-
-    <div class="card">
-      <img src="static/images/man8.png.PNG">
-      <h2>Blue Checked Shirt</h2>
-      <div class="rating"></div>
-      <div class="productpriceelm"><p class="productprice">₹1299</p><p class="productacutleprice">₹2599</p></div>
-      <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">28</p></div>
-      <a href="/addtocart"><button class="addtocartbtn">🛒 Add To Cart</button></a>
     </div>
   </div>
 
-  <!-- ================= Women Collection ================= -->
+  <!-- All Product Section -->
+  <section id="productpage">
+    
+    <!-- ================= Men Collection ================= -->
+    <h2 class="man">Men's Collections</h2>
+    <div class="continer">
 
-<h2 class="women">Women's Collections</h2>
+      <div class="card">
+        <img src="static/images/man1.png.PNG" alt="Classic Denim Jacket">
+        <h2>Classic Denim Jacket</h2>
+        <div class="rating"></div>
+        <div class="productpriceelm">
+          <p class="productprice">₹1499</p>
+          <p class="productacutleprice">₹2999</p>
+        </div>
+        <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">40</p></div>
+        <button class="addtocartbtn">🛒 Add To Cart</button>
+      </div>
 
-<div class="continer">
-  <!-- cards -->
+      <div class="card">
+        <img src="static/images/man2.png.PNG" alt="Casual White Shirt">
+        <h2>Casual White Shirt</h2>
+        <div class="rating"></div>
+        <div class="productpriceelm"><p class="productprice">₹899</p><p class="productacutleprice">₹1999</p></div>
+        <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">30</p></div>
+        <button class="addtocartbtn">🛒 Add To Cart</button>
+      </div>
 
-    <div class="card">
-      <img src="static/images/womans1.png.PNG">
-      <h2>Light Blue Casual Shirt</h2>
-      <div class="rating"></div>
-      <div class="productpriceelm"><p class="productprice">₹899</p><p class="productacutleprice">₹1899</p></div>
-      <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">50</p></div>
-      <a href="/addtocart"><button class="addtocartbtn">🛒 Add To Cart</button></a>
+      <div class="card">
+        <img src="static/images/man3.png.PNG" alt="Formal Grey Shirt">
+        <h2>Formal Grey Shirt</h2>
+        <div class="rating"></div>
+        <div class="productpriceelm"><p class="productprice">₹1099</p><p class="productacutleprice">₹2499</p></div>
+        <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">25</p></div>
+        <button class="addtocartbtn">🛒 Add To Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="static/images/man4.png.PNG" alt="Red Checked Shirt">
+        <h2>Red Checked Shirt</h2>
+        <div class="rating"></div>
+        <div class="productpriceelm"><p class="productprice">₹1199</p><p class="productacutleprice">₹2399</p></div>
+        <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">45</p></div>
+        <button class="addtocartbtn">🛒 Add To Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="static/images/man5.png.PNG" alt="Light Pink Shirt">
+        <h2>Light Pink Shirt</h2>
+        <div class="rating"></div>
+        <div class="productpriceelm"><p class="productprice">₹799</p><p class="productacutleprice">₹1599</p></div>
+        <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">20</p></div>
+        <button class="addtocartbtn">🛒 Add To Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="static/images/man6.png.PNG" alt="Navy Blue Blazer">
+        <h2>Navy Blue Blazer</h2>
+        <div class="rating"></div>
+        <div class="productpriceelm"><p class="productprice">₹2499</p><p class="productacutleprice">₹4999</p></div>
+        <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">15</p></div>
+        <button class="addtocartbtn">🛒 Add To Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="static/images/man7.png.PNG" alt="Sky Blue Shirt">
+        <h2>Sky Blue Shirt</h2>
+        <div class="rating"></div>
+        <div class="productpriceelm"><p class="productprice">₹999</p><p class="productacutleprice">₹1999</p></div>
+        <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">35</p></div>
+        <button class="addtocartbtn">🛒 Add To Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="static/images/man8.png.PNG" alt="Blue Checked Shirt">
+        <h2>Blue Checked Shirt</h2>
+        <div class="rating"></div>
+        <div class="productpriceelm"><p class="productprice">₹1299</p><p class="productacutleprice">₹2599</p></div>
+        <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">28</p></div>
+        <button class="addtocartbtn">🛒 Add To Cart</button>
+      </div>
+
     </div>
 
-    <div class="card">
-      <img src="static/images/womans2.png.PNG">
-      <h2>White Formal Shirt</h2>
-      <div class="rating"></div>
-      <div class="productpriceelm"><p class="productprice">₹999</p><p class="productacutleprice">₹2099</p></div>
-      <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">40</p></div>
-      <a href="/addtocart"><button class="addtocartbtn">🛒 Add To Cart</button></a>
+    <!-- ================= Women Collection ================= -->
+    <h2 class="women">Women's Collections</h2>
+    <div class="continer">
+
+      <div class="card">
+        <img src="static/images/womans1.png.PNG" alt="Light Blue Casual Shirt">
+        <h2>Light Blue Casual Shirt</h2>
+        <div class="rating"></div>
+        <div class="productpriceelm"><p class="productprice">₹899</p><p class="productacutleprice">₹1899</p></div>
+        <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">50</p></div>
+        <button class="addtocartbtn">🛒 Add To Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="static/images/womans2.png.PNG" alt="White Formal Shirt">
+        <h2>White Formal Shirt</h2>
+        <div class="rating"></div>
+        <div class="productpriceelm"><p class="productprice">₹999</p><p class="productacutleprice">₹2099</p></div>
+        <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">40</p></div>
+        <button class="addtocartbtn">🛒 Add To Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="static/images/woman3.png.PNG" alt="Green Skirt & Shirt">
+        <h2>Green Skirt & Shirt</h2>
+        <div class="rating"></div>
+        <div class="productpriceelm"><p class="productprice">₹1499</p><p class="productacutleprice">₹2999</p></div>
+        <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">35</p></div>
+        <button class="addtocartbtn">🛒 Add To Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="static/images/woman4.png.PNG" alt="Brown Ethnic Top">
+        <h2>Brown Ethnic Top</h2>
+        <div class="rating"></div>
+        <div class="productpriceelm"><p class="productprice">₹1299</p><p class="productacutleprice">₹2699</p></div>
+        <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">25</p></div>
+        <button class="addtocartbtn">🛒 Add To Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="static/images/woman.5.PNG" alt="White Lace Top">
+        <h2>White Lace Top</h2>
+        <div class="rating"></div>
+        <div class="productpriceelm"><p class="productprice">₹799</p><p class="productacutleprice">₹1599</p></div>
+        <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">45</p></div>
+        <button class="addtocartbtn">🛒 Add To Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="static/images/woman6.png.PNG" alt="Pink Saree">
+        <h2>Pink Saree</h2>
+        <div class="rating"></div>
+        <div class="productpriceelm"><p class="productprice">₹1999</p><p class="productacutleprice">₹3999</p></div>
+        <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">20</p></div>
+        <button class="addtocartbtn">🛒 Add To Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="static/images/woman7.png.PNG" alt="Green Silk Saree">
+        <h2>Green Silk Saree</h2>
+        <div class="rating"></div>
+        <div class="productpriceelm"><p class="productprice">₹2499</p><p class="productacutleprice">₹4999</p></div>
+        <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">18</p></div>
+        <button class="addtocartbtn">🛒 Add To Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="static/images/woman8.png.PNG" alt="Red Bridal Saree">
+        <h2>Red Bridal Saree</h2>
+        <div class="rating"></div>
+        <div class="productpriceelm"><p class="productprice">₹2999</p><p class="productacutleprice">₹5999</p></div>
+        <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">12</p></div>
+        <button class="addtocartbtn">🛒 Add To Cart</button>
+      </div>
+
     </div>
+  </section>
 
-    <div class="card">
-      <img src="static/images/woman3.png.PNG">
-      <h2>Green Skirt & Shirt</h2>
-      <div class="rating"></div>
-      <div class="productpriceelm"><p class="productprice">₹1499</p><p class="productacutleprice">₹2999</p></div>
-      <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">35</p></div>
-      <a href="/addtocart"><button class="addtocartbtn">🛒 Add To Cart</button></a>
-    </div>
-
-    <div class="card">
-      <img src="static/images/woman4.png.PNG">
-      <h2>Brown Ethnic Top</h2>
-      <div class="rating"></div>
-      <div class="productpriceelm"><p class="productprice">₹1299</p><p class="productacutleprice">₹2699</p></div>
-      <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">25</p></div>
-      <a href="/addtocart"><button class="addtocartbtn">🛒 Add To Cart</button></a>
-    </div>
-
-    <div class="card">
-      <img src="static/images/woman.5.PNG">
-      <h2>White Lace Top</h2>
-      <div class="rating"></div>
-      <div class="productpriceelm"><p class="productprice">₹799</p><p class="productacutleprice">₹1599</p></div>
-      <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">45</p></div>
-      <a href="/addtocart"><button class="addtocartbtn">🛒 Add To Cart</button></a>
-    </div>
-
-    <div class="card">
-      <img src="static/images/woman6.png.PNG">
-      <h2>Pink Saree</h2>
-      <div class="rating"></div>
-      <div class="productpriceelm"><p class="productprice">₹1999</p><p class="productacutleprice">₹3999</p></div>
-      <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">20</p></div>
-      <a href="/addtocart"><button class="addtocartbtn">🛒 Add To Cart</button></a>
-    </div>
-
-    <div class="card">
-      <img src="static/images/woman7.png.PNG">
-      <h2>Green Silk Saree</h2>
-      <div class="rating"></div>
-      <div class="productpriceelm"><p class="productprice">₹2499</p><p class="productacutleprice">₹4999</p></div>
-      <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">18</p></div>
-      <a href="/addtocart"><button class="addtocartbtn">🛒 Add To Cart</button></a>
-    </div>
-
-    <div class="card">
-      <img src="static/images/woman8.png.PNG">
-      <h2>Red Bridal Saree</h2>
-      <div class="rating"></div>
-      <div class="productpriceelm"><p class="productprice">₹2999</p><p class="productacutleprice">₹5999</p></div>
-      <div class="productstockelm"><p class="productpropty">Total Stock Available:</p><p class="productstock">12</p></div>
-      <a href="/addtocart"><button class="addtocartbtn">🛒 Add To Cart</button></a>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-   <section class="footer" id="footers">
-    <div class="footer">
-      <div class="container">
-        <div class="roww">
-          <div class="fotterclg1">
-            <h3>Download our App</h3>
-            <p>Download App for Android and ios mobile phone</p>
-            <div class="app">
-              <img src="static/images/play-store.png" >
-                <img src="static/images/app-store.png" >
-            </div>
+  <!-- Footer Section -->
+  <section class="footer" id="footers">
+    <div class="container">
+      <div class="roww">
+        <div class="fotterclg1">
+          <h3>Download our App</h3>
+          <p>Download App for Android and iOS mobile phone</p>
+          <div class="app">
+            <img src="static/images/play-store.png" alt="Play Store">
+            <img src="static/images/app-store.png" alt="App Store">
           </div>
-          <div class="fotterclg2">
-            <img src="static/images/logo-white.png" >
-            <div class="para">
-            <p>"Welcome to RedShope  your trusted online store for quality, value, and convenience. At RedShope, we’re committed to bringing you a wide range of products that match your lifestyle and budget, from everyday essentials to the latest trends. With fast delivery, secure payments, and dedicated customer service, we make shopping online simple and satisfying. Discover great deals and shop with confidence at RedShope – where quality meets convenience!"!</p>
+        </div>
+        <div class="fotterclg2">
+          <img src="static/images/logo-white.png" alt="White Logo" width="120px" style="margin-bottom: 10px;">
+          <div class="para">
+            <p>"Welcome to RedShope your trusted online store for quality, value, and convenience. At RedShope, we’re committed to bringing you a wide range of products that match your lifestyle and budget..."</p>
           </div>
-          </div>
-            <div class="fotterclg3">
-            <h3>Usefull Links</h3>
-           <ul>
-           <li>Coupons</li>
-           <li>Blog Pos</li>
-           <li>Return Policy</li>
+        </div>
+        <div class="fotterclg3">
+          <h3>Useful Links</h3>
+          <ul>
+            <li>Coupons</li>
+            <li>Blog Post</li>
+            <li>Return Policy</li>
             <li>Join Affiliate</li>
-
-
-           </ul>
-          </div>
-           <div class="fotterclg4">
-            <h3>Follw US</h3>
-           <ul>
-           <li>Facebook</li>
-           <li>Twitter</li>
-           <li>Instagram</li>
+          </ul>
+        </div>
+        <div class="fotterclg4">
+          <h3>Follow US</h3>
+          <ul>
+            <li>Facebook</li>
+            <li>Twitter</li>
+            <li>Instagram</li>
             <li>Youtube</li>
-
-
-           </ul>
-          </div>
+          </ul>
         </div>
       </div>
     </div>   
+  </section>
 
-</section>
-
+  <!-- JavaScript Logic -->
   <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const addToCartButtons = document.querySelectorAll(".addtocartbtn");
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Mobile Menu Toggle Logic
+      const mobileMenu = document.getElementById("mobile-menu");
+      const navLinks = document.getElementById("nav-links");
 
-  addToCartButtons.forEach((button, index) => {
-    button.addEventListener("click", (e) => {
-      e.preventDefault();
+      mobileMenu.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
 
-      const card = button.closest(".card");
-      const name = card.querySelector("h2").innerText.trim();
-      const price = parseFloat(card.querySelector(".productprice").innerText.replace("₹", "").trim());
-      const originalPrice = parseFloat(card.querySelector(".productacutleprice").innerText.replace("₹", "").trim());
-      const stock = parseInt(card.querySelector(".productstock").innerText.trim());
-      const imageSrc = card.querySelector("img").getAttribute("src");
+      // 2. Cart Management System
+      const cartCountBadge = document.getElementById("cart-count");
 
-      // Use a unique id - you can use index or better a generated id
-      const id = index + 1;
-
-      const productData = {
-        id,
-        name,
-        price,
-        originalPrice,
-        stock,
-        image: imageSrc,
-        quantity: 1
-      };
-
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      const existing = cart.find(item => item.id === id);
-
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        cart.push(productData);
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCountBadge.innerText = totalItems;
       }
 
-      localStorage.setItem("cart", JSON.stringify(cart));
-     window.location.href = "/addtocart"; 
+      // Initialize badge count on load
+      updateCartCount();
+
+      // Add to Cart Event Listeners
+      const addToCartButtons = document.querySelectorAll(".addtocartbtn");
+
+      addToCartButtons.forEach((button, index) => {
+        button.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          const card = button.closest(".card");
+          const name = card.querySelector("h2").innerText.trim();
+          const price = parseFloat(card.querySelector(".productprice").innerText.replace("₹", "").trim());
+          const originalPrice = parseFloat(card.querySelector(".productacutleprice").innerText.replace("₹", "").trim());
+          const stock = parseInt(card.querySelector(".productstock").innerText.trim());
+          const imageSrc = card.querySelector("img").getAttribute("src");
+          const id = index + 1;
+
+          const productData = {
+            id,
+            name,
+            price,
+            originalPrice,
+            stock,
+            image: imageSrc,
+            quantity: 1
+          };
+
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+          const existing = cart.find(item => item.id === id);
+
+          if (existing) {
+            existing.quantity += 1;
+          } else {
+            cart.push(productData);
+          }
+
+          localStorage.setItem("cart", JSON.stringify(cart));
+          
+          // Update count visually without redirecting page
+          updateCartCount();
+          
+          // Button feedback animation
+          button.innerText = "✓ Added!";
+          setTimeout(() => {
+            button.innerText = "🛒 Add To Cart";
+          }, 1000);
+        });
+      });
     });
-  });
-});
-</script>
-
-
-
-
+  </script>
 </body>
 </html>
