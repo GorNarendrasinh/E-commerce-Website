@@ -3,502 +3,613 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>RedShope - Gaming Collection</title>
     <style>
+        /* Reset default browser styles */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: Arial, sans-serif;
+        }
 
-     /* Reset default browser styles */
-/* === NAVIGATION BAR STYLES === */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
+        body {
+          overflow-x: hidden;
+          background-color: #f8f8f8;
+          color: #333;
+          width: 100%;
+        }
 
-body {
-  overflow-x: hidden;
-  background-color: #f8f8f8;
-}
+        /* ===== FULL WIDTH HEADER & NAVBAR ===== */
+        .header {
+          width: 100%;
+          background: #fff;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+        }
 
-/* ===== NAVBAR ===== */
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: #fff;
-  padding: 10px 20px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+        .navbar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          padding: 10px 30px;
+        }
 
-.logo img {
-  width: 120px;
-}
+        .logo img {
+          width: 120px;
+        }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
+        nav ul {
+          list-style: none;
+          display: flex;
+          gap: 20px;
+        }
 
-nav ul li a {
-  text-decoration: none;
-  color: #333;
-  font-size: 15px;
-  padding: 6px 10px;
-  transition: 0.3s;
-}
+        nav ul li a {
+          text-decoration: none;
+          color: #333;
+          font-size: 15px;
+          padding: 6px 10px;
+          transition: 0.3s;
+        }
 
-nav ul li a:hover {
-  background: #f0f0f0;
-  color: #007bff;
-  border-radius: 4px;
-}
+        nav ul li a:hover {
+          background: #f0f0f0;
+          color: #007bff;
+          border-radius: 4px;
+        }
 
-.cart {
-  width: 28px;
-}
+        /* Right Actions Wrapper */
+        .nav-right-actions {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+        }
 
-/* ===== SECTION HEADINGS ===== */
-.man, .women {
-  background-color: lightpink;
-  padding: 10px;
-  text-align: center;
-  margin: 30px auto;
-  width: fit-content;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
+        /* Cart & Badge Container */
+        .cart-container {
+          position: relative;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+        }
 
-/* ===== PRODUCT GRID ===== */
-.continer {
-  max-width: 1200px;
-  margin: auto;
-  padding: 10px;
+        .cart {
+          width: 28px;
+          height: 28px;
+          object-fit: contain;
+        }
 
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-}
+        .cart-count {
+          position: absolute;
+          top: -8px;
+          right: -10px;
+          background: red;
+          color: white;
+          font-size: 11px;
+          padding: 2px 6px;
+          border-radius: 50%;
+          font-weight: bold;
+        }
 
-/* ===== CARD ===== */
-.card {
-  width: 100%;
-  background: #fff;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #eee;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: 0.3s;
-}
+        /* Mobile Hamburger Menu Icon */
+        .menu-toggle {
+          display: none;
+          flex-direction: column;
+          cursor: pointer;
+          gap: 5px;
+          padding: 5px;
+        }
 
-.card:hover {
-  transform: translateY(-5px);
-}
+        .menu-toggle span {
+          width: 25px;
+          height: 3px;
+          background: #333;
+          border-radius: 2px;
+          transition: 0.3s;
+        }
 
-.card img {
-  width: 100%;
-  height: auto;        /* IMPORTANT */
-  object-fit: contain; /* full image show */
-  background: #fff;    /* optional (empty space clean dikhega) */
-}
+        /* ===== MAIN CONTAINER ===== */
+        .container {
+          max-width: 1200px;
+          margin: auto;
+          padding: 0 15px;
+        }
 
-.card h2 {
-  font-size: 16px;
-  margin: 10px 0;
-  color: #444;
-}
+        /* ===== PRODUCT GRID ===== */
+        .continer {
+          max-width: 1200px;
+          margin: auto;
+          padding: 10px;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 15px;
+        }
 
-/* ===== RATING ===== */
-.rating::before {
-  content: "★★★★★";
-  letter-spacing: 3px;
-  color: #f5b50a;
-  font-size: 16px;
-}
+        /* ===== CARD ===== */
+        .card {
+          width: 100%;
+          background: #fff;
+          border-radius: 8px;
+          padding: 10px;
+          text-align: center;
+          border: 1px solid #eee;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          transition: 0.3s;
+        }
 
-/* ===== PRICE ===== */
-.productpriceelm {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 8px 0;
-}
+        .card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
 
-.productprice {
-  color: red;
-  font-weight: bold;
-}
+        .card img {
+          width: 100%;
+          height: 150px;
+          object-fit: contain;
+          background: #fff;
+        }
 
-.productacutleprice {
-  text-decoration: line-through;
-  color: #888;
-}
+        .card h2 {
+          font-size: 16px;
+          margin: 10px 0;
+          color: #444;
+        }
 
-/* ===== STOCK ===== */
-.productstockelm {
-  font-size: 13px;
-  margin-bottom: 10px;
-}
+        /* ===== RATING ===== */
+        .rating::before {
+          content: "★★★★★";
+          letter-spacing: 3px;
+          color: #f5b50a;
+          font-size: 16px;
+        }
 
-/* ===== BUTTON ===== */
-.addtocartbtn {
-  background: black;
-  color: white;
-  border: none;
-  padding: 10px;
-  width: 90%;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+        /* ===== PRICE ===== */
+        .productpriceelm {
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+          margin: 8px 0;
+        }
 
-.addtocartbtn:hover {
-  background: orange;
-}
+        .productprice {
+          color: red;
+          font-weight: bold;
+        }
 
-/* ===== FOOTER ===== */
-.footer {
-  background: black;
-  color: white;
-  padding: 40px 20px;
-  margin-top: 40px;
-}
+        .productacutleprice {
+          text-decoration: line-through;
+          color: #888;
+        }
 
-.footer .roww {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
+        /* ===== STOCK ===== */
+        .productstockelm {
+          font-size: 13px;
+          margin-bottom: 10px;
+          color: #666;
+        }
 
-.footer .roww > div {
-  flex: 1;
-  min-width: 200px;
-}
+        .productpropty {
+          display: inline;
+        }
 
-.footer p {
-  font-size: 14px;
-  color: #ccc;
-}
+        .productstock {
+          display: inline;
+          font-weight: bold;
+        }
 
-.footer ul {
-  list-style: none;
-}
+        /* ===== BUTTON ===== */
+        .addtocartbtn {
+          background: black;
+          color: white;
+          border: none;
+          padding: 10px;
+          width: 100%;
+          border-radius: 20px;
+          cursor: pointer;
+          transition: 0.3s;
+          font-weight: bold;
+        }
 
-.footer ul li {
-  margin: 5px 0;
-  color: #ccc;
-}
+        .addtocartbtn:hover {
+          background: orange;
+        }
 
-/* ===== RESPONSIVE ===== */
+        /* ===== FOOTER ===== */
+        .footer {
+          background: black;
+          color: white;
+          padding: 40px 20px;
+          margin-top: 40px;
+          width: 100%;
+        }
 
-/* Tablet */
-@media (max-width: 992px) {
-  .continer {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
+        .footer .roww {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+          justify-content: space-between;
+          max-width: 1200px;
+          margin: auto;
+        }
 
-/* Mobile */
-@media (max-width: 600px) {
+        .footer .roww > div {
+          flex: 1;
+          min-width: 200px;
+        }
 
-  .continer {
-    grid-template-columns: repeat(2, 1fr); /* ✅ 2 cards */
-  }
+        .footer p, .footer ul li {
+          font-size: 14px;
+          color: #ccc;
+          margin: 5px 0;
+        }
 
-  nav ul {
-    display: none; /* simple mobile fix */
-  }
+        .footer h3 {
+          margin-bottom: 10px;
+          color: #fff;
+        }
 
-  .card img {
-    height: 140px;
-  }
+        .footer ul {
+          list-style: none;
+        }
 
-  .card h2 {
-    font-size: 14px;
-  }
+        .app img {
+          width: 110px;
+          margin-top: 8px;
+          display: inline-block;
+          margin-right: 5px;
+        }
 
-  .addtocartbtn {
-    font-size: 12px;
-    padding: 8px;
-  }
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+          .continer {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
 
-  .footer .roww {
-    flex-direction: column;
-    text-align: center;
-  }
-}
+        @media (max-width: 600px) {
+          .menu-toggle {
+            display: flex; /* Display hamburger menu icon on mobile */
+          }
 
+          /* Full width dropdown menu styling */
+          nav {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100vw;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+          }
+
+          /* Show dropdown when toggled */
+          nav.active {
+            max-height: 350px;
+          }
+
+          nav ul {
+            width: 100%;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 10px 0;
+            gap: 0;
+          }
+
+          nav ul li {
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+          }
+
+          nav ul li a {
+            display: block;
+            width: 100%;
+            padding: 12px 0;
+            font-size: 16px;
+          }
+
+          .continer {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+          }
+
+          .card img {
+            height: 120px;
+          }
+
+          .card h2 {
+            font-size: 14px;
+          }
+
+          .addtocartbtn {
+            font-size: 12px;
+            padding: 8px;
+          }
+
+          .footer .roww {
+            flex-direction: column;
+            text-align: center;
+          }
+        }
     </style>
 </head>
 <body>
     <div class="header">
-  <div class="container">
-  <div class="navbar">
-    <div class="logo">
-      <img src="static/images/logo.png"width="130px">
+      <div class="navbar">
+        <div class="logo">
+          <a href="/"><img src="static/images/logo.png" alt="Logo" width="130px"></a>
+        </div>
+        
+        <!-- Full-width mobile navigation menu container -->
+        <nav id="nav-links">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#productpage">Product</a></li>
+            <li><a href="#footers">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/account">Account</a></li>
+          </ul>
+        </nav>
+        
+        <!-- Right Actions Wrapper (Cart + Mobile Menu Toggle) -->
+        <div class="nav-right-actions">
+          <a href="/addtocart" style="text-decoration: none;">
+            <div class="cart-container">
+              <img src="static/images/cart.png" class="cart" alt="Cart" width="30px" height="30px">
+              <span class="cart-count" id="cart-count">0</span>
+            </div>
+          </a>
+          <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
     </div>
-     <nav>
-      <ul>   <li><a href="/">Home</a></li>
-          <li><a href="#productpage">Product</a></li>
-          <li><a href="#footers">About</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href="/account">Account</a></li>
-        </ul>
-        </ul>
-     </nav>
-     <img src="static/images/cart.png" class="cart" width="30px" height="30px" >
-  </div>
 
-         <!-- all product section here  -->
-
-
-       <div class="continer">
-     <div class="card">
-        <img src="/static/images/gaming.jpg">
-        <h2>Gaming Cobsole & Controller Skin</h2>
-        <div class="rating"> </div>
-        <div class="productpriceelm">
+    <!-- All Product Section -->
+    <div class="container" id="productpage">
+      <div class="continer">
+        
+        <div class="card">
+          <img src="/static/images/gaming.jpg" alt="Gaming Console & Controller Skin">
+          <h2>Gaming Console & Controller Skin</h2>
+          <div class="rating"></div>
+          <div class="productpriceelm">
             <p class="productprice">₹1999.99</p>
             <p class="productacutleprice">₹3999</p>
           </div>
-
           <div class="productstockelm">
             <p class="productpropty">Total Stock Available:</p>
             <p class="productstock">50</p>
           </div>
-
-          
-         <a href="/addtocart">  <button class="addtocartbtn">
-  <i>🛒</i> Add To Cart </button></a>
+          <button class="addtocartbtn"><i>🛒</i> Add To Cart</button>
         </div>
-        
 
-         <div class="card">
-         <img src="/static/images/gaming2.jpg">
-        <h2>Large Deask Pad</h2>
-        <div class="rating"> </div>
-        <div class="productpriceelm">
+        <div class="card">
+          <img src="/static/images/gaming2.jpg" alt="Large Desk Pad">
+          <h2>Large Desk Pad</h2>
+          <div class="rating"></div>
+          <div class="productpriceelm">
             <p class="productprice">₹909.99</p>
             <p class="productacutleprice">₹1999</p>
           </div>
-
           <div class="productstockelm">
             <p class="productpropty">Total Stock Available:</p>
             <p class="productstock">50</p>
           </div>
-
-          
-         <a href="/addtocart">  <button class="addtocartbtn">
-  <i>🛒</i> Add To Cart </button></a>
+          <button class="addtocartbtn"><i>🛒</i> Add To Cart</button>
         </div>
-         
 
-         <div class="card">
-        <img src="/static/images/gaming3.jpg">
-        <h2>Mobile Gaming Finger Sleeves</h2>
-        <div class="rating"> </div>
-        <div class="productpriceelm">
+        <div class="card">
+          <img src="/static/images/gaming3.jpg" alt="Mobile Gaming Finger Sleeves">
+          <h2>Mobile Gaming Finger Sleeves</h2>
+          <div class="rating"></div>
+          <div class="productpriceelm">
             <p class="productprice">₹990.99</p>
             <p class="productacutleprice">₹1999</p>
           </div>
-
           <div class="productstockelm">
             <p class="productpropty">Total Stock Available:</p>
             <p class="productstock">50</p>
           </div>
-
-          
-         <a href="/addtocart">  <button class="addtocartbtn">
-  <i>🛒</i> Add To Cart </button></a>
+          <button class="addtocartbtn"><i>🛒</i> Add To Cart</button>
         </div>
 
-         <div class="card">
-    <img src="/static/images/gaming4.jpg">
-        <h2>Laptop Colling Pad With Dual Fans</h2>
-        <div class="rating"> </div>
-        <div class="productpriceelm">
+        <div class="card">
+          <img src="/static/images/gaming4.jpg" alt="Laptop Cooling Pad With Dual Fans">
+          <h2>Laptop Cooling Pad With Dual Fans</h2>
+          <div class="rating"></div>
+          <div class="productpriceelm">
             <p class="productprice">₹999.99</p>
             <p class="productacutleprice">₹2999</p>
           </div>
-
           <div class="productstockelm">
             <p class="productpropty">Total Stock Available:</p>
             <p class="productstock">50</p>
           </div>
-
-          
-         <a href="/addtocart">  <button class="addtocartbtn">
-  <i>🛒</i> Add To Cart </button></a>
+          <button class="addtocartbtn"><i>🛒</i> Add To Cart</button>
         </div>
 
-         <div class="card">
-          <img src="/static/images/gaming10.webp">
-        <h2>Gaming Chair  With Footers</h2>
-        <div class="rating"> </div>
-        <div class="productpriceelm">
+        <div class="card">
+          <img src="/static/images/gaming10.webp" alt="Gaming Chair With Footers">
+          <h2>Gaming Chair With Footers</h2>
+          <div class="rating"></div>
+          <div class="productpriceelm">
             <p class="productprice">₹19999.99</p>
             <p class="productacutleprice">₹21999</p>
           </div>
-
           <div class="productstockelm">
             <p class="productpropty">Total Stock Available:</p>
             <p class="productstock">50</p>
           </div>
-
-          
-         <a href="/addtocart">  <button class="addtocartbtn">
-  <i>🛒</i> Add To Cart </button></a>
+          <button class="addtocartbtn"><i>🛒</i> Add To Cart</button>
         </div>
 
-         <div class="card">
-        <img src="/static/images/gaming6.jpg">
-        <h2>Mobile Gamig Controller / Trigger</h2>
-        <div class="rating"> </div>
-        <div class="productpriceelm">
+        <div class="card">
+          <img src="/static/images/gaming6.jpg" alt="Mobile Gaming Controller / Trigger">
+          <h2>Mobile Gaming Controller / Trigger</h2>
+          <div class="rating"></div>
+          <div class="productpriceelm">
             <p class="productprice">₹9099.99</p>
             <p class="productacutleprice">₹13999</p>
           </div>
-
           <div class="productstockelm">
             <p class="productpropty">Total Stock Available:</p>
             <p class="productstock">50</p>
           </div>
-
-          
-         <a href="/addtocart">  <button class="addtocartbtn">
-  <i>🛒</i> Add To Cart </button></a>
+          <button class="addtocartbtn"><i>🛒</i> Add To Cart</button>
         </div>
 
-         <div class="card">
-        <img src="/static/images/gaming.png">
-        <h2>Sony PlaySatation 4</h2>
-        <div class="rating"> </div>
-        <div class="productpriceelm">
+        <div class="card">
+          <img src="/static/images/gaming.png" alt="Sony PlayStation 4">
+          <h2>Sony PlayStation 4</h2>
+          <div class="rating"></div>
+          <div class="productpriceelm">
             <p class="productprice">₹9099.99</p>
             <p class="productacutleprice">₹13999</p>
           </div>
-
           <div class="productstockelm">
             <p class="productpropty">Total Stock Available:</p>
             <p class="productstock">50</p>
           </div>
-
-          
-         <a href="/addtocart">  <button class="addtocartbtn">
-  <i>🛒</i> Add To Cart </button></a>
+          <button class="addtocartbtn"><i>🛒</i> Add To Cart</button>
         </div>
 
-         <div class="card">
-         <img src="/static/images/gaming8.jpg">
-        <h2>Racing Whell Controller</h2>
-        <div class="rating"> </div>
-        <div class="productpriceelm">
+        <div class="card">
+          <img src="/static/images/gaming8.jpg" alt="Racing Wheel Controller">
+          <h2>Racing Wheel Controller</h2>
+          <div class="rating"></div>
+          <div class="productpriceelm">
             <p class="productprice">₹9999.99</p>
             <p class="productacutleprice">₹13999</p>
           </div>
-
           <div class="productstockelm">
             <p class="productpropty">Total Stock Available:</p>
             <p class="productstock">50</p>
           </div>
-
-          
-         <a href="/addtocart">  <button class="addtocartbtn">
-  <i>🛒</i> Add To Cart </button></a>
+          <button class="addtocartbtn"><i>🛒</i> Add To Cart</button>
         </div>
-      </div>
 
-   <section class="footer" id="footers">
-    <div class="footer">
-      <div class="container">
-        <div class="roww">
-          <div class="fotterclg1">
-            <h3>Download our App</h3>
-            <p>Download App for Android and ios mobile phone</p>
-            <div class="app">
-              <img src="images/play-store.png" >
-                <img src="images/app-store.png" >
-            </div>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <section class="footer" id="footers">
+      <div class="roww">
+        <div class="fotterclg1">
+          <h3>Download our App</h3>
+          <p>Download App for Android and ios mobile phone</p>
+          <div class="app">
+            <img src="images/play-store.png" alt="Play Store">
+            <img src="images/app-store.png" alt="App Store">
           </div>
-          <div class="fotterclg2">
-            <img src="images/logo-white.png" >
-            <div class="para">
-            <p>"Welcome to RedShope – your trusted online store for quality, value, and convenience. At RedShope, we’re committed to bringing you a wide range of products that match your lifestyle and budget, from everyday essentials to the latest trends. With fast delivery, secure payments, and dedicated customer service, we make shopping online simple and satisfying. Discover great deals and shop with confidence at RedShope – where quality meets convenience!"!</p>
+        </div>
+        <div class="fotterclg2">
+          <img src="images/logo-white.png" alt="Logo White" width="120px" style="margin-bottom:10px;">
+          <div class="para">
+            <p>"Welcome to RedShope – your trusted online store for quality, value, and convenience. At RedShope, we’re committed to bringing you a wide range of products that match your lifestyle and budget..."</p>
           </div>
-          </div>
-            <div class="fotterclg3">
-            <h3>Usefull Links</h3>
-           <ul>
-           <li>Coupons</li>
-           <li>Blog Pos</li>
-           <li>Return Policy</li>
+        </div>
+        <div class="fotterclg3">
+          <h3>Useful Links</h3>
+          <ul>
+            <li>Coupons</li>
+            <li>Blog Post</li>
+            <li>Return Policy</li>
             <li>Join Affiliate</li>
-
-
-           </ul>
-          </div>
-           <div class="fotterclg4">
-            <h3>Follw US</h3>
-           <ul>
-           <li>Facebook</li>
-           <li>Twitter</li>
-           <li>Instagram</li>
-            <li>Youtube</li>
-
-
-           </ul>
-          </div>
+          </ul>
         </div>
-      </div>
-    </div>   
+        <div class="fotterclg4">
+          <h3>Follow US</h3>
+          <ul>
+            <li>Facebook</li>
+            <li>Twitter</li>
+            <li>Instagram</li>
+            <li>Youtube</li>
+          </ul>
+        </div>
+      </div>   
+    </section>
 
-</section>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const addToCartButtons = document.querySelectorAll(".addtocartbtn");
+    <!-- JavaScript Logic -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // 1. Full-width Mobile Menu Toggle Logic
+        const mobileMenu = document.getElementById("mobile-menu");
+        const navLinks = document.getElementById("nav-links");
 
-  addToCartButtons.forEach((button, index) => {
-    button.addEventListener("click", (e) => {
-      e.preventDefault();
+        if (mobileMenu && navLinks) {
+          mobileMenu.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+          });
+        }
 
-      const card = button.closest(".card");
-      const name = card.querySelector("h2").innerText.trim();
-      const price = parseFloat(card.querySelector(".productprice").innerText.replace("₹", "").trim());
-      const originalPrice = parseFloat(card.querySelector(".productacutleprice").innerText.replace("₹", "").trim());
-      const stock = parseInt(card.querySelector(".productstock").innerText.trim());
-      const imageSrc = card.querySelector("img").getAttribute("src");
+        // 2. Cart Management System
+        const cartCountBadge = document.getElementById("cart-count");
 
-      // Use a unique id - you can use index or better a generated id
-      const id = index + 1;
+        function updateCartCount() {
+          const cart = JSON.parse(localStorage.getItem("cart")) || [];
+          const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+          cartCountBadge.innerText = totalItems;
+        }
 
-      const productData = {
-        id,
-        name,
-        price,
-        originalPrice,
-        stock,
-        image: imageSrc,
-        quantity: 1
-      };
+        // Initialize counter badge on page load
+        updateCartCount();
 
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      const existing = cart.find(item => item.id === id);
+        const addToCartButtons = document.querySelectorAll(".addtocartbtn");
 
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        cart.push(productData);
-      }
+        addToCartButtons.forEach((button, index) => {
+          button.addEventListener("click", (e) => {
+            e.preventDefault();
 
-      localStorage.setItem("cart", JSON.stringify(cart));
-     window.location.href = "/addtocart"; 
-    });
-  });
-});
-</script>
+            const card = button.closest(".card");
+            const name = card.querySelector("h2").innerText.trim();
+            const price = parseFloat(card.querySelector(".productprice").innerText.replace("₹", "").trim());
+            const originalPrice = parseFloat(card.querySelector(".productacutleprice").innerText.replace("₹", "").trim());
+            const stock = parseInt(card.querySelector(".productstock").innerText.trim());
+            const imageSrc = card.querySelector("img").getAttribute("src");
+            const id = index + 1; // Unique ID range for the Gaming page
+
+            const productData = {
+              id,
+              name,
+              price,
+              originalPrice,
+              stock,
+              image: imageSrc,
+              quantity: 1
+            };
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const existing = cart.find(item => item.id === id);
+
+            if (existing) {
+              existing.quantity += 1;
+            } else {
+              cart.push(productData);
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            
+            // Refresh badge count live without reloading page
+            updateCartCount();
+
+            // Button feedback animation
+            button.innerText = "✓ Added!";
+            setTimeout(() => {
+              button.innerHTML = "<i>🛒</i> Add To Cart";
+            }, 1000);
+          });
+        });
+      });
+    </script>
 </body>
 </html>
