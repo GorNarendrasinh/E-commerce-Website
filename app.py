@@ -4,24 +4,34 @@ from datetime import timedelta
 from passlib.hash import sha256_crypt
 import pymysql
 import os
-
-pymysql.install_as_MySQLdb()
-
 app = Flask(__name__)
 
 app.secret_key = os.environ.get(
     'SECRET_KEY',
     'dev-secret-key'
 )
+MYSQL_HOST = os.environ.get('MYSQL_HOST')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+if MYSQL_HOST:
+    MYSQL_USER = os.environ.get('MYSQL_USER')
+    MYSQL_PASSWORD = os.environ.get('MYSQL_PASSWORD', '')
+    MYSQL_PORT = os.environ.get('MYSQL_PORT', '3306')
+    MYSQL_DATABASE = os.environ.get('MYSQL_DATABASE')
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = (
+        f'mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}'
+        f'@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}'
+    )
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = (
+        'mysql+pymysql://root:@localhost/user_signup'
+    )
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 app.permanent_session_lifetime = timedelta(days=10)
 
 db = SQLAlchemy(app)
-
-
 
 
 # ---------------- DATABASE MODELS ----------------
